@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Sudoque.Game;
 
 namespace Sudoque.Gui
 {
@@ -7,9 +8,10 @@ namespace Sudoque.Gui
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(PuzzleViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }

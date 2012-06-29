@@ -14,8 +14,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Label FontSize="10" Foreground="Gray" DockPanel.Dock="Top" Grid.Row="0" Grid.Column="0" Margin="0" Padding="0" HorizontalAlignment="Center">1 2 3 4 5 6 7 8</Label>
-            <Label FontSize="44" Grid.Row="1" Grid.Column="0" Margin="0 -8 0 0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center">9</Label>
+            <Label FontSize="10" Foreground="Gray" DockPanel.Dock="Top" Grid.Row="0" Grid.Column="0" Margin="0" Padding="0" HorizontalAlignment="Center" Content="{Binding Potentials}" />
+            <Label FontSize="44" Grid.Row="1" Grid.Column="0" Margin="0 -8 0 0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Actual}" />
         </Grid>
     </Border>
 </UserControl>

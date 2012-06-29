@@ -2,25 +2,22 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Gui="clr-namespace:Sudoque.Gui" Title="MainWindow"
         SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <DataTemplate x:Key="ninerTemplate">
+            <Gui:NinerGrid />
+        </DataTemplate>
+        <DataTemplate x:Key="puzzleTemplate">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource ResourceKey=ninerTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Gui:NinerGrid Grid.Row="0" Grid.Column="0" />
-        <Gui:NinerGrid Grid.Row="1" Grid.Column="0" />
-        <Gui:NinerGrid Grid.Row="2" Grid.Column="0" />
-        <Gui:NinerGrid Grid.Row="0" Grid.Column="1" />
-        <Gui:NinerGrid Grid.Row="1" Grid.Column="1" />
-        <Gui:NinerGrid Grid.Row="2" Grid.Column="1" />
-        <Gui:NinerGrid Grid.Row="0" Grid.Column="2" />
-        <Gui:NinerGrid Grid.Row="1" Grid.Column="2" />
-        <Gui:NinerGrid Grid.Row="2" Grid.Column="2" />
+        <ItemsControl ItemTemplate="{DynamicResource ResourceKey=puzzleTemplate}" ItemsSource="{Binding Niners}" />
     </Grid>
 </Window>
