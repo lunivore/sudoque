@@ -1,0 +1,6 @@
+*.user
+obj/*
+bin/*
+_Resharper.*/
+*.swp
+*~
