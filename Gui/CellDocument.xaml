@@ -7,6 +7,15 @@
              Height="72" Width="72" Padding="0">
     <Border BorderBrush="LightGray" BorderThickness="1">
         <Grid>
+            <Grid.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Selected}" Value="true">
+                            <Setter Property="TextBox.Background" Value="BlanchedAlmond"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="72"/>
             </Grid.ColumnDefinitions>

@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using Microsoft.Practices.Prism.Events;
+using Microsoft.Practices.Unity;
 using Sudoque.Game;
 using Sudoque.Gui;
 
@@ -16,7 +18,15 @@ namespace Sudoque
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            new MainWindow(new PuzzleViewModel()).Show();
+            IUnityContainer container = new UnityContainer();
+            container.RegisterType(typeof (PuzzleViewModel));
+            container.RegisterType(typeof (NinerViewModel));
+            container.RegisterType(typeof(IEventAggregator), typeof (EventAggregator));
+            container.RegisterType(typeof(ICreateCells), typeof (CellFactory));
+            container.RegisterType(typeof(ICreateNiners), typeof (NinerFactory));
+            
+            var window = container.Resolve<MainWindow>();
+            window.Show();
         }
     }
 }

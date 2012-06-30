@@ -3,21 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Gui="clr-namespace:Sudoque.Gui">
     <UserControl.Resources>
+        <Style x:Key="ninerHighlights">
+            <Style.Resources>
+                <!-- Background of selected item when focussed -->
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                <!-- Background of selected item when not focussed -->
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+            </Style.Resources>
+        </Style>
         <DataTemplate x:Key="cellTemplate">
             <Gui:CellDocument />
         </DataTemplate>
         <DataTemplate x:Key="ninerTemplate">
-            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource ResourceKey=cellTemplate}">
-                <ItemsControl.ItemsPanel>
+            <ListBox ItemsSource="{Binding}" ItemTemplate="{DynamicResource ResourceKey=cellTemplate}"
+                     SelectionMode="Single" SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, 
+                       Path=DataContext.CurrentCell, Mode=TwoWay}" Style="{DynamicResource ResourceKey=ninerHighlights}">
+                <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+                </ListBox.ItemsPanel>
+            </ListBox>
         </DataTemplate>
     </UserControl.Resources>
     <Border BorderThickness="3" BorderBrush="DarkGray">
-        <Grid ShowGridLines="False">
+        <Grid>
             <ItemsControl ItemTemplate="{DynamicResource ResourceKey=ninerTemplate}" ItemsSource="{Binding Cells}"/>
         </Grid>
     </Border>

@@ -36,6 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,7 +57,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Game\CellFactory.cs" />
+    <Compile Include="Game\CellId.cs" />
+    <Compile Include="Game\CellSelectedEvent.cs" />
     <Compile Include="Game\CellViewModel.cs" />
+    <Compile Include="Game\ICreateCells.cs" />
+    <Compile Include="Game\ICreateNiners.cs" />
+    <Compile Include="Game\NinerId.cs" />
     <Compile Include="Game\NinerViewModel.cs" />
     <Compile Include="Game\PuzzleViewModel.cs" />
     <Page Include="Gui\MainWindow.xaml">
@@ -86,6 +94,7 @@
     <Compile Include="Gui\CellDocument.xaml.cs">
       <DependentUpon>CellDocument.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Game\NinerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
