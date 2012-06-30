@@ -22,8 +22,8 @@ namespace Sudoque
             container.RegisterType(typeof (PuzzleViewModel));
             container.RegisterType(typeof (NinerViewModel));
             container.RegisterInstance(typeof(IEventAggregator), new EventAggregator());
-            container.RegisterType(typeof(ICreateCells), typeof (CellFactory));
-            container.RegisterType(typeof(ICreateNiners), typeof (NinerFactory));
+            container.RegisterType(typeof(ICreateCellViewModels), typeof (CellViewModelViewModelFactory));
+            container.RegisterType(typeof(ICreateNinerViewModels), typeof (NinerViewModelViewModelFactory));
             
             var window = container.Resolve<MainWindow>();
             window.Show();

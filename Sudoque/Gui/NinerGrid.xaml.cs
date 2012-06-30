@@ -23,5 +23,10 @@ namespace Sudoque.Gui
         {
             InitializeComponent();
         }
+
+        private void OnFocusLost(object sender, RoutedEventArgs e)
+        {
+            ((ListBox)sender).SelectedItems.Clear();
+        }
     }
 }

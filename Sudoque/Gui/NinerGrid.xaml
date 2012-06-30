@@ -16,8 +16,9 @@
         </DataTemplate>
         <DataTemplate x:Key="ninerTemplate">
             <ListBox ItemsSource="{Binding}" ItemTemplate="{DynamicResource ResourceKey=cellTemplate}"
-                     SelectionMode="Single" SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, 
-                       Path=DataContext.CurrentCell, Mode=TwoWay}" Style="{DynamicResource ResourceKey=ninerHighlights}">
+                     SelectionMode="Multiple" SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, 
+                       Path=DataContext.CurrentCell, Mode=TwoWay}" Style="{DynamicResource ResourceKey=ninerHighlights}"
+                     LostFocus="OnFocusLost">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"/>

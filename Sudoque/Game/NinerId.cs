@@ -11,11 +11,6 @@ namespace Sudoque.Game
             _row = row;
         }
 
-        public override string ToString()
-        {
-            return (_row*3 + _column).ToString();
-        }
-
         public bool Equals(NinerId other)
         {
             if (ReferenceEquals(null, other)) return false;

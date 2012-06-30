@@ -1,0 +1,49 @@
+﻿<Window x:Class="Sudoque.Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Gui="clr-namespace:Sudoque.Gui" Title="MainWindow"
+        SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <DataTemplate x:Key="ninerTemplate">
+            <Gui:NinerGrid />
+        </DataTemplate>
+        <DataTemplate x:Key="puzzleTemplate">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource ResourceKey=ninerTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibility" />
+        <Gui:BooleanToInvisibilityConverter x:Key="booleanToInvisibility" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="D1" Command="{Binding NumberRequest}" CommandParameter="1" />
+        <KeyBinding Key="D2" Command="{Binding NumberRequest}" CommandParameter="2" />
+        <KeyBinding Key="D3" Command="{Binding NumberRequest}" CommandParameter="3" />
+        <KeyBinding Key="D4" Command="{Binding NumberRequest}" CommandParameter="4" />
+        <KeyBinding Key="D5" Command="{Binding NumberRequest}" CommandParameter="5" />
+        <KeyBinding Key="D6" Command="{Binding NumberRequest}" CommandParameter="6" />
+        <KeyBinding Key="D7" Command="{Binding NumberRequest}" CommandParameter="7" />
+        <KeyBinding Key="D8" Command="{Binding NumberRequest}" CommandParameter="8" />
+        <KeyBinding Key="D9" Command="{Binding NumberRequest}" CommandParameter="9" />
+    </Window.InputBindings>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <ItemsControl ItemTemplate="{DynamicResource ResourceKey=puzzleTemplate}" ItemsSource="{Binding Niners}" Grid.Row="0" Grid.Column="0"/>
+        </Grid>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+            <Button Command="{Binding NewGameRequest}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToVisibility}}">Create New Game</Button>
+            <Button Command="{Binding PlayGameRequest}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToInvisibility}}">Play Game</Button>
+        </StackPanel>
+    </Grid>
+</Window>

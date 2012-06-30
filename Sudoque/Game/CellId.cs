@@ -38,10 +38,5 @@ namespace Sudoque.Game
             _column = column;
             _row = row;
         }
-
-        public override string ToString()
-        {
-            return string.Format("{0}{1}{2}", _ninerId, _column, _row);
-        }
     }
 }

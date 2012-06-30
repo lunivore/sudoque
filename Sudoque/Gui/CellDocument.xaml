@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Sudoque.Gui.CellDocument"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Gui="clr-namespace:Sudoque.Gui"
+             Height="72" Width="72" Padding="0">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibility" />
+        <Gui:BooleanToInvisibilityConverter x:Key="booleanToInvisbility" />
+    </UserControl.Resources>
+    <Border BorderBrush="LightGray" BorderThickness="1">
+        <Grid>
+            <Grid.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Selected}" Value="true">
+                            <Setter Property="TextBox.Background" Value="BlanchedAlmond"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <TextBlock FontSize="18" Foreground="Gray" Padding="0" Margin="2 -2 2 0" HorizontalAlignment="Center" VerticalAlignment="Stretch" Text="{Binding Potentials}" 
+                   Visibility="{Binding Path=HasPotentials, Converter={StaticResource booleanToVisibility}}" TextWrapping="Wrap" />
+            <Label FontSize="44" Foreground="Gray" Margin="0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Actual}"
+                   Visibility="{Binding Path=Fixed, Converter={StaticResource booleanToInvisbility}}"/>
+            <Label FontSize="44" Foreground="Black" Margin="0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Actual}"
+                   Visibility="{Binding Path=Fixed, Converter={StaticResource booleanToVisibility}}" />
+        </Grid>
+    </Border>
+</UserControl>

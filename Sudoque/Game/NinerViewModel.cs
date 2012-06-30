@@ -12,12 +12,12 @@ namespace Sudoque.Game
         private readonly NinerId _id;
         private IEnumerable<IEnumerable<CellViewModel>> _cells;
 
-        public NinerViewModel(NinerId id, ICreateCells cellFactory)
+        public NinerViewModel(NinerId id, ICreateCellViewModels cellViewModelFactory)
         {
             _id = id;
             _cells = new[] { 0, 1, 2 }.ToList().Select(row =>
                     new[] { 0, 1, 2 }.ToList().Select(column =>
-                        cellFactory.Create(_id, column, row)));
+                        cellViewModelFactory.Create(_id, column, row)));
         }
 
         public IEnumerable<IEnumerable<CellViewModel>> Cells

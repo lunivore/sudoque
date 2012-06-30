@@ -1,6 +1,6 @@
 *.user
-obj/*
-bin/*
-_Resharper.*/
+*\bin
+*\obj
+_Resharper.*
 *.swp
 *~
