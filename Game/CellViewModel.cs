@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Microsoft.Practices.Prism.Events;
 
 namespace Sudoque.Game
@@ -10,10 +12,13 @@ namespace Sudoque.Game
         private readonly CellId _id;
         private readonly CellSelectedEvent _selectionEvent;
         private bool _selected;
+        private readonly NumberPressEvent _numberPressEvent;
+        private readonly HashSet<int> _potentials;
 
         public CellViewModel(CellId id, IEventAggregator events)
         {
             _id = id;
+            _potentials = new HashSet<int>();
             _selectionEvent = events.GetEvent<CellSelectedEvent>();
             _selectionEvent.Subscribe(cellId =>
                                   {
@@ -22,11 +27,41 @@ namespace Sudoque.Game
                                           Selected = false;
                                       }
                                   });
+            _numberPressEvent = events.GetEvent<NumberPressEvent>();
+            _numberPressEvent.Subscribe(number =>
+                                            {
+                                                if (!Selected) return;
+                                                if (!_potentials.Remove(number)) {_potentials.Add(number);}
+                                                PropertyChanged(this, new PropertyChangedEventArgs("Potentials"));
+                                                PropertyChanged(this, new PropertyChangedEventArgs("Actual"));
+                                            });
         }
 
-        public string Potentials { get { return "1 2 3 4 5 6 7 8"; } }
+        public string Potentials
+        {
+            get
+            {
+                if (_potentials.Count < 2)
+                {
+                    return string.Empty;
+                }
+                var orderedPotentials = _potentials.ToList();
+                orderedPotentials.Sort();
+                return string.Join(" ", orderedPotentials);
+            }
+        }
 
-        public string Actual { get { return _id.ToString(); } }
+        public string Actual
+        {
+            get 
+            {
+                if (_potentials.Count != 1)
+                {
+                    return string.Empty;
+                }
+                return _potentials.First().ToString();
+            }
+        }
 
         public bool Selected { 
              get { return _selected; }

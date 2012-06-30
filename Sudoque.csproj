@@ -65,6 +65,7 @@
     <Compile Include="Game\ICreateNiners.cs" />
     <Compile Include="Game\NinerId.cs" />
     <Compile Include="Game\NinerViewModel.cs" />
+    <Compile Include="Game\NumberPressEvent.cs" />
     <Compile Include="Game\PuzzleViewModel.cs" />
     <Page Include="Gui\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

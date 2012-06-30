@@ -21,7 +21,7 @@ namespace Sudoque
             IUnityContainer container = new UnityContainer();
             container.RegisterType(typeof (PuzzleViewModel));
             container.RegisterType(typeof (NinerViewModel));
-            container.RegisterType(typeof(IEventAggregator), typeof (EventAggregator));
+            container.RegisterInstance(typeof(IEventAggregator), new EventAggregator());
             container.RegisterType(typeof(ICreateCells), typeof (CellFactory));
             container.RegisterType(typeof(ICreateNiners), typeof (NinerFactory));
             
