@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Unity;
 using Sudoque.Game;
@@ -22,8 +17,8 @@ namespace Sudoque
             container.RegisterType(typeof (PuzzleViewModel));
             container.RegisterType(typeof (NinerViewModel));
             container.RegisterInstance(typeof(IEventAggregator), new EventAggregator());
-            container.RegisterType(typeof(ICreateCellViewModels), typeof (CellViewModelViewModelFactory));
-            container.RegisterType(typeof(ICreateNinerViewModels), typeof (NinerViewModelViewModelFactory));
+            container.RegisterType(typeof(ICreateCellViewModels), typeof (CellViewModelFactory));
+            container.RegisterType(typeof(ICreateNinerViewModels), typeof (NinerViewModelFactory));
             
             var window = container.Resolve<MainWindow>();
             window.Show();

@@ -3,11 +3,11 @@ using Sudoque.Game;
 
 namespace Sudoque
 {
-    public class CellViewModelViewModelFactory : ICreateCellViewModels
+    public class CellViewModelFactory : ICreateCellViewModels
     {
         private readonly IEventAggregator _events;
 
-        public CellViewModelViewModelFactory(IEventAggregator events)
+        public CellViewModelFactory(IEventAggregator events)
         {
             _events = events;
         }

@@ -107,7 +107,7 @@
     <Compile Include="Gui\CellDocument.xaml.cs">
       <DependentUpon>CellDocument.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Game\NinerViewModelViewModelFactory.cs" />
+    <Compile Include="Game\NinerViewModelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

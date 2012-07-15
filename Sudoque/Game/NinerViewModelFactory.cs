@@ -1,10 +1,10 @@
 namespace Sudoque.Game
 {
-    public class NinerViewModelViewModelFactory : ICreateNinerViewModels
+    public class NinerViewModelFactory : ICreateNinerViewModels
     {
         private readonly ICreateCellViewModels _cellViewModelFactory;
 
-        public NinerViewModelViewModelFactory(ICreateCellViewModels cellViewModelFactory)
+        public NinerViewModelFactory(ICreateCellViewModels cellViewModelFactory)
         {
             _cellViewModelFactory = cellViewModelFactory;
         }
