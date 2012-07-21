@@ -3,14 +3,19 @@ namespace Sudoque.Game
     public class CellId
     {
         private readonly NinerId _ninerId;
-        private readonly int _column;
-        private readonly int _row;
+        private readonly int _id;
+
+        public CellId(NinerId ninerId, int column, int row)
+        {
+            _ninerId = ninerId;
+            _id = row*3 + column;
+        }
 
         public bool Equals(CellId other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Equals(other._ninerId, _ninerId) && other._column == _column && other._row == _row;
+            return other._id == _id && Equals(other._ninerId, _ninerId);
         }
 
         public override bool Equals(object obj)
@@ -25,18 +30,13 @@ namespace Sudoque.Game
         {
             unchecked
             {
-                int result = _ninerId.GetHashCode();
-                result = (result*397) ^ _column;
-                result = (result*397) ^ _row;
-                return result;
+                return (_id*397) ^ _ninerId.GetHashCode();
             }
         }
 
-        public CellId(NinerId ninerId, int column, int row)
+        public override string ToString()
         {
-            _ninerId = ninerId;
-            _column = column;
-            _row = row;
+            return string.Format("Cell[{0}, {1}]", _ninerId, _id);
         }
     }
 }

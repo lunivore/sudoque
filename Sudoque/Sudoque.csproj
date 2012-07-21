@@ -63,8 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppFactory.cs" />
     <Compile Include="Game\Engine\Cell.cs" />
-    <Compile Include="Game\CellViewModelViewModelFactory.cs" />
+    <Compile Include="Game\CellViewModelFactory.cs" />
     <Compile Include="Game\CellId.cs" />
     <Compile Include="Game\CellSelectedEvent.cs" />
     <Compile Include="Game\CellViewModel.cs" />

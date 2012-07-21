@@ -19,7 +19,7 @@
                 </Style>
             </Grid.Style>
             <TextBlock FontSize="18" Foreground="Gray" Padding="0" Margin="2 -2 2 0" HorizontalAlignment="Center" VerticalAlignment="Stretch" Text="{Binding Potentials}" 
-                   Visibility="{Binding Path=HasPotentials, Converter={StaticResource booleanToVisibility}}" TextWrapping="Wrap" />
+                   TextWrapping="Wrap" />
             <Label FontSize="44" Foreground="Gray" Margin="0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Actual}"
                    Visibility="{Binding Path=Fixed, Converter={StaticResource booleanToInvisbility}}"/>
             <Label FontSize="44" Foreground="Black" Margin="0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Actual}"

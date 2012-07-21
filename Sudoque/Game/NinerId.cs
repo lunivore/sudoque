@@ -2,20 +2,18 @@ namespace Sudoque.Game
 {
     public class NinerId
     {
-        private readonly int _column;
-        private readonly int _row;
+        private readonly int _id;
 
         public NinerId(int column, int row)
         {
-            _column = column;
-            _row = row;
+            _id = row*3 + column;
         }
 
         public bool Equals(NinerId other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other._column == _column && other._row == _row;
+            return other._id == _id;
         }
 
         public override bool Equals(object obj)
@@ -28,10 +26,12 @@ namespace Sudoque.Game
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                return (_column*397) ^ _row;
-            }
+            return _id;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Niner[{0}]", _id);
         }
     }
 }

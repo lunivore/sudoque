@@ -6,17 +6,15 @@ namespace Sudoque.Scenarios.Framework
     {
         private readonly SudoqueSteps _sudoqueSteps;
         private readonly CellSelectionSteps _cellSelectionSteps;
+        private World _world;
 
         protected Scenario()
         {
-            _sudoqueSteps = new SudoqueSteps();
-            _cellSelectionSteps = new CellSelectionSteps();
+            _world = new World();
+            _sudoqueSteps = new SudoqueSteps(_world);
+            _cellSelectionSteps = new CellSelectionSteps(_world);
         }
 
-        protected SudoqueSteps ThenSudoque
-        {
-            get { return _sudoqueSteps; }
-        }
 
         protected CellSelectionSteps WhenISelect
         {
@@ -24,6 +22,16 @@ namespace Sudoque.Scenarios.Framework
         }
 
         protected SudoqueSteps GivenSudoque
+        {
+            get { return _sudoqueSteps; }
+        }
+        
+        protected SudoqueSteps WhenSudoque
+        {
+            get { return _sudoqueSteps; }
+        }
+
+        protected SudoqueSteps ThenSudoque
         {
             get { return _sudoqueSteps; }
         }

@@ -13,12 +13,7 @@ namespace Sudoque
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            IUnityContainer container = new UnityContainer();
-            container.RegisterType(typeof (PuzzleViewModel));
-            container.RegisterType(typeof (NinerViewModel));
-            container.RegisterInstance(typeof(IEventAggregator), new EventAggregator());
-            container.RegisterType(typeof(ICreateCellViewModels), typeof (CellViewModelFactory));
-            container.RegisterType(typeof(ICreateNinerViewModels), typeof (NinerViewModelFactory));
+            var container = new AppFactory().CreateContainer();
             
             var window = container.Resolve<MainWindow>();
             window.Show();

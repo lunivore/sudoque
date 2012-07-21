@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,7 +6,7 @@ namespace Sudoque.Game.Engine
 {
     public class Cell
     {
-        private HashSet<int> _potentials;
+        private readonly HashSet<int> _potentials;
         private Mode _mode = Mode.NewGame;
         private bool _fixed;
 

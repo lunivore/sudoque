@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.Practices.Prism.Events;
 using Sudoque.Game.Engine;
@@ -76,6 +77,11 @@ namespace Sudoque.Game
                      NotifyPropertyChanged(() => Selected);
                  }
              } 
+        }
+
+        public override string ToString()
+        {
+            return _id.ToString();
         }
     }
 }

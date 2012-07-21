@@ -16,11 +16,11 @@ namespace Sudoque.Scenarios
             WhenISelect.Cell(3, 4).AndToggle(1);
             ThenSudoque.ShouldLookLike(
                 "... ... ..." + NL +
-                "... ... 1.." + NL +
+                "... ... ..." + NL +
                 "... ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +
-                "... ... ..." + NL +
+                ".1. ... ..." + NL +
                 "... ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +
@@ -29,11 +29,11 @@ namespace Sudoque.Scenarios
             WhenISelect.Cell(0, 8).AndToggle(1, 2, 3);
             ThenSudoque.ShouldLookLike(
                 "... ... ..." + NL +
-                "... ... 1.." + NL +
-                ".3. ... ..." + NL +
+                "... ... ..." + NL +
+                "..3 ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +
-                "... ... ..." + NL +
+                ".1. ... ..." + NL +
                 "... ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +
@@ -46,11 +46,26 @@ namespace Sudoque.Scenarios
         {
             GivenSudoque.HasAPuzzle(
                 "... ... ..." + NL +
-                "... ... 1.." + NL +
-                ".3. ... ..." + NL +
+                "... ... ..." + NL +
+                "..3 ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +
                 "... ... ..." + NL +
+                "... ... ..." + NL +
+                "           " + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL);
+            WhenSudoque.IsPlayed();
+            WhenISelect.Cell(0, 8).AndToggle(5);
+            WhenISelect.Cell(4, 4).AndToggle(6);
+            ThenSudoque.ShouldLookLike(
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "..3 ... ..." + NL +
+                "           " + NL +
+                "... ... ..." + NL +
+                "... .6. ..." + NL +
                 "... ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +

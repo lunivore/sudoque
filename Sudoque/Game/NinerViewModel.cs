@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,9 +15,18 @@ namespace Sudoque.Game
         public NinerViewModel(NinerId id, ICreateCellViewModels cellViewModelFactory)
         {
             _id = id;
-            _cells = new[] { 0, 1, 2 }.ToList().Select(row =>
-                    new[] { 0, 1, 2 }.ToList().Select(column =>
-                        cellViewModelFactory.Create(_id, column, row)));
+
+            var range = new[] { 0, 1, 2 }.ToList();
+            var tempCells = new List<List<CellViewModel>>();
+            foreach (var row in range)
+            {
+                tempCells.Add(new List<CellViewModel>());
+                foreach (var col in range)
+                {
+                    tempCells[row].Add(cellViewModelFactory.Create(id, col, row));
+                }
+            }
+            _cells = tempCells;
         }
 
         public IEnumerable<IEnumerable<CellViewModel>> Cells
@@ -37,6 +47,9 @@ namespace Sudoque.Game
             }
         }
 
-        
+        public override string ToString()
+        {
+            return _id.ToString();
+        }
     }
 }
