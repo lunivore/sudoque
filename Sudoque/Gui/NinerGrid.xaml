@@ -14,22 +14,17 @@
         <DataTemplate x:Key="cellTemplate">
             <Gui:CellDocument />
         </DataTemplate>
-        <DataTemplate x:Key="ninerTemplate">
-            <ListBox ItemsSource="{Binding}" ItemTemplate="{DynamicResource ResourceKey=cellTemplate}"
-                     SelectionMode="Multiple" SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, 
-                       Path=DataContext.CurrentCell, Mode=TwoWay}" Style="{DynamicResource ResourceKey=ninerHighlights}"
-                     LostFocus="OnFocusLost">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-            </ListBox>
-        </DataTemplate>
+
     </UserControl.Resources>
     <Border BorderThickness="3" BorderBrush="DarkGray">
-        <Grid>
-            <ItemsControl ItemTemplate="{DynamicResource ResourceKey=ninerTemplate}" ItemsSource="{Binding Cells}"/>
-        </Grid>
+        <ItemsControl 
+            ItemTemplate="{StaticResource ResourceKey=cellTemplate}"
+            ItemsSource="{Binding Cells}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="3" Columns="3" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </Border>
 </UserControl>

@@ -10,26 +10,24 @@ namespace Sudoque.Game
         public event PropertyChangedEventHandler PropertyChanged;
 
         private readonly NinerId _id;
-        private IEnumerable<IEnumerable<CellViewModel>> _cells;
+        private IEnumerable<CellViewModel> _cells;
 
         public NinerViewModel(NinerId id, ICreateCellViewModels cellViewModelFactory)
         {
             _id = id;
 
-            var range = new[] { 0, 1, 2 }.ToList();
-            var tempCells = new List<List<CellViewModel>>();
+            List<CellViewModel> models = new List<CellViewModel>();
+
+            var range = new[] { 0, 1, 2 };
             foreach (var row in range)
+            foreach (var col in range)
             {
-                tempCells.Add(new List<CellViewModel>());
-                foreach (var col in range)
-                {
-                    tempCells[row].Add(cellViewModelFactory.Create(id, col, row));
-                }
+                models.Add(cellViewModelFactory.Create(id, col, row));
             }
-            _cells = tempCells;
+            _cells = models;
         }
 
-        public IEnumerable<IEnumerable<CellViewModel>> Cells
+        public IEnumerable<CellViewModel> Cells
         {
             get { return _cells; }
         }

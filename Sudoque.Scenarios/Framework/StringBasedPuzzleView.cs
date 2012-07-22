@@ -24,7 +24,7 @@ namespace Sudoque.Scenarios.Framework
                 for (int col = 0; col < 9; col++)                
                 {
                     var niner = _viewModel.Niners.ElementAt(row/3).ElementAt(col/3);
-                    var cell = niner.Cells.ElementAt(row%3).ElementAt(col%3);
+                    var cell = FindCellInNiner(row % 3, col % 3, niner);
 
                     currentGrid.Append(cell.Actual.Equals(string.Empty) ? "." : cell.Actual);
                     AppendVerticalSeparators(currentGrid, col);
@@ -33,6 +33,11 @@ namespace Sudoque.Scenarios.Framework
             }
             var actual = currentGrid.ToString();
             Assert.AreEqual(expected, actual);
+        }
+
+        private CellViewModel FindCellInNiner(int row, int col, NinerViewModel niner)
+        {
+            return niner.Cells.ElementAt( row * 3 + col );
         }
         
         public void Initialize(string grid)
@@ -49,7 +54,7 @@ namespace Sudoque.Scenarios.Framework
                     if (character != '.')
                     {
                         var niner = _viewModel.Niners.ElementAt(row/3).ElementAt(col/3);
-                        var cell = niner.Cells.ElementAt(row%3).ElementAt(col%3);
+                        var cell = FindCellInNiner( row % 3, col % 3, niner );
                         cell.Selected = true;
                         _viewModel.NumberRequest.Execute(character.ToString());
                     }
@@ -78,7 +83,7 @@ namespace Sudoque.Scenarios.Framework
         public void ToggleCell(int ninerId, int cellId, int number)
         {
             var niner = _viewModel.Niners.ElementAt(ninerId/3).ElementAt(ninerId%3);
-            var cell = niner.Cells.ElementAt(cellId/3).ElementAt(cellId%3);
+            var cell = FindCellInNiner( cellId / 3, cellId % 3, niner );
             cell.Selected = true;
             _viewModel.NumberRequest.Execute(number.ToString());
         }

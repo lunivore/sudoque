@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using Microsoft.Practices.Prism.Events;
 using Sudoque.Game.Engine;
+using Microsoft.Practices.Prism.Commands;
+using System.Windows.Input;
 
 namespace Sudoque.Game
 {
@@ -16,14 +18,15 @@ namespace Sudoque.Game
         {
             _id = id;
             _cell = new Cell();
+
+            GotFocus = new DelegateCommand<string>( CellFocused);
+
             _selectionEvent = events.GetEvent<CellSelectedEvent>();
-            _selectionEvent.Subscribe(cellId =>
+            _selectionEvent.Subscribe( cell =>
                                   {
-                                      if (!_id.Equals(cellId))
-                                      {
-                                          Selected = false;
-                                      }
-                                  });
+                                      Selected = cell == _cell;
+                                  }); // Note: Could be memory leak due to event link
+
             var numberRequestEvent = events.GetEvent<NumberRequestEvent>();
             numberRequestEvent.Subscribe(ToggleNumber);
 
@@ -73,12 +76,18 @@ namespace Sudoque.Game
                  if (_selected != value)
                  {
                      _selected = value;
-                     if (value) { _selectionEvent.Publish(_id); }
                      NotifyPropertyChanged(() => Selected);
                  }
              } 
         }
 
+        public ICommand GotFocus { get; set; }
+        
+        private void CellFocused( string unused )
+        {
+            _selectionEvent.Publish( _cell );
+        }
+        
         public override string ToString()
         {
             return _id.ToString();
