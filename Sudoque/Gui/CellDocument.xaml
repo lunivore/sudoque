@@ -20,17 +20,8 @@
             <i:EventTrigger EventName="GotFocus">
                 <i:InvokeCommandAction Command="{Binding GotFocus}" />
             </i:EventTrigger>
-
         </i:Interaction.Triggers>
-        <!--<Button.Style>
-            <Style>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding Selected}" Value="true">
-                        <Setter Property="Background" Value="BlanchedAlmond"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-        </Button.Style>-->
+
         <Grid>
             <TextBlock FontSize="18" Foreground="Gray" Padding="0" Margin="2 -2 2 0" HorizontalAlignment="Center" VerticalAlignment="Stretch" Text="{Binding Potentials}" 
                    TextWrapping="Wrap" />

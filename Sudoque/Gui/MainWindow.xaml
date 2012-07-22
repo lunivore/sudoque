@@ -41,12 +41,7 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </Border>
-        <!--<Grid>
-            <ItemsControl 
-                ItemTemplate="{DynamicResource ResourceKey=puzzleTemplate}" 
-                ItemsSource="{Binding Niners}" 
-                Grid.Row="0" Grid.Column="0"/>
-        </Grid>-->
+
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
             <Button Command="{Binding NewGameRequest}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToVisibility}}">Create New Game</Button>
             <Button Command="{Binding PlayGameRequest}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToInvisibility}}">Play Game</Button>

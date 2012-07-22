@@ -3,19 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Gui="clr-namespace:Sudoque.Gui">
     <UserControl.Resources>
-        <Style x:Key="ninerHighlights">
-            <Style.Resources>
-                <!-- Background of selected item when focussed -->
-                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
-                <!-- Background of selected item when not focussed -->
-                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
-            </Style.Resources>
-        </Style>
         <DataTemplate x:Key="cellTemplate">
             <Gui:CellDocument />
         </DataTemplate>
-
     </UserControl.Resources>
+
     <Border BorderThickness="3" BorderBrush="DarkGray">
         <ItemsControl 
             ItemTemplate="{StaticResource ResourceKey=cellTemplate}"
