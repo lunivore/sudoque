@@ -6,15 +6,6 @@
         <DataTemplate x:Key="ninerTemplate">
             <Gui:NinerGrid />
         </DataTemplate>
-        <DataTemplate x:Key="puzzleTemplate">
-            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource ResourceKey=ninerTemplate}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </DataTemplate>
         <BooleanToVisibilityConverter x:Key="booleanToVisibility" />
         <Gui:BooleanToInvisibilityConverter x:Key="booleanToInvisibility" />
     </Window.Resources>
@@ -38,9 +29,24 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid>
-            <ItemsControl ItemTemplate="{DynamicResource ResourceKey=puzzleTemplate}" ItemsSource="{Binding Niners}" Grid.Row="0" Grid.Column="0"/>
-        </Grid>
+
+        <Border BorderThickness="3" BorderBrush="DarkGray">
+            <ItemsControl 
+                ItemTemplate="{StaticResource ResourceKey=ninerTemplate}"
+                ItemsSource="{Binding Niners}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="3" Columns="3" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </Border>
+        <!--<Grid>
+            <ItemsControl 
+                ItemTemplate="{DynamicResource ResourceKey=puzzleTemplate}" 
+                ItemsSource="{Binding Niners}" 
+                Grid.Row="0" Grid.Column="0"/>
+        </Grid>-->
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
             <Button Command="{Binding NewGameRequest}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToVisibility}}">Create New Game</Button>
             <Button Command="{Binding PlayGameRequest}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToInvisibility}}">Play Game</Button>

@@ -23,7 +23,7 @@ namespace Sudoque.Scenarios.Framework
             {
                 for (int col = 0; col < 9; col++)                
                 {
-                    var niner = _viewModel.Niners.ElementAt(row/3).ElementAt(col/3);
+                    var niner = FindNiner( row, col );
                     var cell = FindCellInNiner(row % 3, col % 3, niner);
 
                     currentGrid.Append(cell.Actual.Equals(string.Empty) ? "." : cell.Actual);
@@ -33,6 +33,11 @@ namespace Sudoque.Scenarios.Framework
             }
             var actual = currentGrid.ToString();
             Assert.AreEqual(expected, actual);
+        }
+
+        private NinerViewModel FindNiner( int row, int col)
+        {
+            return _viewModel.Niners.ElementAt( row / 3 * 3 + col / 3); // Truncate to block of rows, then apply offset per column
         }
 
         private CellViewModel FindCellInNiner(int row, int col, NinerViewModel niner)
@@ -53,7 +58,7 @@ namespace Sudoque.Scenarios.Framework
                     var character = gridWithoutSeparators.ElementAt(row*9 + col);
                     if (character != '.')
                     {
-                        var niner = _viewModel.Niners.ElementAt(row/3).ElementAt(col/3);
+                        var niner = FindNiner(row, col);
                         var cell = FindCellInNiner( row % 3, col % 3, niner );
                         cell.Selected = true;
                         _viewModel.NumberRequest.Execute(character.ToString());
@@ -82,8 +87,8 @@ namespace Sudoque.Scenarios.Framework
 
         public void ToggleCell(int ninerId, int cellId, int number)
         {
-            var niner = _viewModel.Niners.ElementAt(ninerId/3).ElementAt(ninerId%3);
-            var cell = FindCellInNiner( cellId / 3, cellId % 3, niner );
+            var niner = _viewModel.Niners.ElementAt(ninerId);
+            var cell = niner.Cells.ElementAt(cellId);
             cell.Selected = true;
             _viewModel.NumberRequest.Execute(number.ToString());
         }

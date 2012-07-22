@@ -13,7 +13,7 @@ namespace Sudoque.Game
         private readonly ICommand _numberRequestCommand;
         private readonly ICommand _newGameRequestCommand;
         private readonly ICommand _playGameRequestCommand;
-        private readonly IEnumerable<IEnumerable<NinerViewModel>> _niners;
+        private readonly IEnumerable<NinerViewModel> _niners;
 
         public PuzzleViewModel(ICreateNinerViewModels ninerViewModelFactory, IEventAggregator events)
         {
@@ -32,23 +32,21 @@ namespace Sudoque.Game
                                                                         NotifyPropertyChanged(() => GameCreated);
                                                                     });
 
-            var range = new[] { 0, 1, 2 }.ToList();
-            var tempNiners = new List<List<NinerViewModel>>();
-            foreach(var row in range)
-            {
-                tempNiners.Add(new List<NinerViewModel>());
+
+            List<NinerViewModel> ninerModels = new List<NinerViewModel>();
+
+            var range = new[] { 0, 1, 2 };
+            foreach (var row in range)
                 foreach (var col in range)
                 {
-                    tempNiners[row].Add(ninerViewModelFactory.Create(col, row));
+                    ninerModels.Add(ninerViewModelFactory.Create(col, row));
                 }
-            }
-            _niners = tempNiners;
-
+            _niners = ninerModels;
         }
 
         public bool GameCreated { get; private set; }
 
-        public IEnumerable<IEnumerable<NinerViewModel>> Niners
+        public IEnumerable<NinerViewModel> Niners
         {
             get { return _niners; }
         }

@@ -16,15 +16,15 @@ namespace Sudoque.Game
         {
             _id = id;
 
-            List<CellViewModel> models = new List<CellViewModel>();
+            List<CellViewModel> cellModels = new List<CellViewModel>();
 
             var range = new[] { 0, 1, 2 };
             foreach (var row in range)
             foreach (var col in range)
             {
-                models.Add(cellViewModelFactory.Create(id, col, row));
+                cellModels.Add(cellViewModelFactory.Create(id, col, row));
             }
-            _cells = models;
+            _cells = cellModels;
         }
 
         public IEnumerable<CellViewModel> Cells
