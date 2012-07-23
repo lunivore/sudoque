@@ -44,7 +44,6 @@ namespace Sudoque.Game
         private void ToggleNumber(int number)
         {
             if (!Selected) return;
-            Console.WriteLine("{0} toggled to {1}", this, number);
             _cell.RequestToggleNumber(number);
             NotifyPropertyChanged(() => Actual, () => Potentials);
             NotifyPropertyChanged(() => HasPotentials);
@@ -76,7 +75,6 @@ namespace Sudoque.Game
              {
                  if (_selected != value)
                  {
-                     Console.WriteLine("{0} is {1}", this, value ? "selected" : "not selected");
                      _selected = value;
                      NotifyPropertyChanged(() => Selected);
                  }
@@ -87,7 +85,6 @@ namespace Sudoque.Game
         
         private void CellFocused( string unused )
         {
-            Console.WriteLine("Cell {0} focused", this);
             _selectionEvent.Publish( _cell );
         }
         

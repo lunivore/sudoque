@@ -32,19 +32,6 @@ namespace Sudoque.Game
             get { return _cells; }
         }
 
-        public CellViewModel CurrentCell
-        {
-            get
-            {
-                return null;
-            }
-            set
-            {
-                value.Selected = true;
-                PropertyChanged(this, new PropertyChangedEventArgs("CurrentCell"));
-            }
-        }
-
         public override string ToString()
         {
             return _id.ToString();
