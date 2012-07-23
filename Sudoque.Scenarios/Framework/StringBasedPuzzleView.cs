@@ -89,7 +89,7 @@ namespace Sudoque.Scenarios.Framework
         {
             var niner = _viewModel.Niners.ElementAt(ninerId);
             var cell = niner.Cells.ElementAt(cellId);
-            cell.Selected = true;
+            cell.GotFocus.Execute("whatever");
             _viewModel.NumberRequest.Execute(number.ToString());
         }
 
