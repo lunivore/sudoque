@@ -1,0 +1,17 @@
+This file declares the source for all libraries 
+
+
+Expression SDK
+http://www.microsoft.com/en-us/download/details.aspx?id=10801
+Microsoft.Expression.Interactions.dll
+System.Windows.Interactivity.dll
+
+Prism
+http://www.microsoft.com/en-us/download/details.aspx?id=28950
+Microsoft.Practices.Unity.dll
+Microsoft.Practices.Prism.dll
+
+Expression blend samples
+http://expressionblend.codeplex.com/SourceControl/list/changesets
+BindingListener.cs
+DataEventTrigger.cs

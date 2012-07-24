@@ -40,13 +40,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\production\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.Prism, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\production\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\lib\production\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\production\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>..\lib\production\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -71,6 +71,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppFactory.cs" />
+    <Compile Include="Game\HintProvidedEvent.cs" />
     <Compile Include="Game\Engine\Cell.cs" />
     <Compile Include="Game\CellViewModelFactory.cs" />
     <Compile Include="Game\CellId.cs" />
@@ -82,6 +83,8 @@
     <Compile Include="Game\ModeRequestEvent.cs" />
     <Compile Include="Game\NinerId.cs" />
     <Compile Include="Game\NinerViewModel.cs" />
+    <Compile Include="Game\Support\BindingListener.cs" />
+    <Compile Include="Game\Support\DataEventTrigger.cs" />
     <Compile Include="Gui\NumberRequestCommand.cs" />
     <Compile Include="Game\NumberRequestEvent.cs" />
     <Compile Include="Game\PuzzleViewModel.cs" />

@@ -3,6 +3,9 @@ using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
 using Sudoque.Gui;
+using Sudoque.Game.Engine;
+using System.Linq;
+using System;
 
 namespace Sudoque.Game
 {
@@ -11,6 +14,7 @@ namespace Sudoque.Game
         private readonly ICommand _numberRequestCommand;
         private readonly ICommand _newGameRequestCommand;
         private readonly ICommand _playGameRequestCommand;
+        private readonly ICommand _triggerAHintCommand;
         private readonly IEnumerable<NinerViewModel> _niners;
 
         public PuzzleViewModel(ICreateNinerViewModels ninerViewModelFactory, IEventAggregator events)
@@ -30,6 +34,12 @@ namespace Sudoque.Game
                                                                         NotifyPropertyChanged(() => GameCreated);
                                                                     });
 
+            // SPIKE: Need to get some random cells for testing hints - this has no real function
+            _triggerAHintCommand = new DelegateCommand<Nullable<bool>>(b =>
+                {
+                    events.GetEvent<HintProvidedEvent>().Publish(GrabRandomCells());
+                });
+            
 
             List<NinerViewModel> ninerModels = new List<NinerViewModel>();
 
@@ -40,6 +50,15 @@ namespace Sudoque.Game
                     ninerModels.Add(ninerViewModelFactory.Create(col, row));
                 }
             _niners = ninerModels;
+        }
+
+        // SPIKE: Need to get some random cells for testing hints - this has no real function
+        ICollection<Cell> GrabRandomCells()
+        {
+            var someCells = new List<Cell>();
+            someCells.Add(Niners.Skip(2).First().Cells.First().Cell);
+            someCells.AddRange(Niners.First().Cells.Select(cvm => cvm.Cell));
+            return someCells;
         }
 
         public bool GameCreated { get; private set; }
@@ -62,6 +81,11 @@ namespace Sudoque.Game
         public ICommand PlayGameRequest
         {
             get { return _playGameRequestCommand; }
+        }
+
+        public ICommand TriggerAHint
+        {
+            get { return _triggerAHintCommand; }
         }
     }
 }

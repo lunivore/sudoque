@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
 using Sudoque.Game.Engine;
+using System;
 
 namespace Sudoque.Game
 {
@@ -25,6 +26,14 @@ namespace Sudoque.Game
                                   {
                                       Selected = cell == _cell;
                                   }); // Note: Could be memory leak due to event link
+
+            events.GetEvent<HintProvidedEvent>().Subscribe( cells =>
+                {
+                    if( cells.Contains( _cell ) )
+                    {
+                        if (CellHinted != null) CellHinted(this, EventArgs.Empty);
+                    }
+                });
 
             var numberRequestEvent = events.GetEvent<NumberRequestEvent>();
             numberRequestEvent.Subscribe(ToggleNumber);
@@ -91,5 +100,9 @@ namespace Sudoque.Game
         {
             return _id.ToString();
         }
+
+        public Cell Cell { get { return _cell; } }
+
+        public event EventHandler<EventArgs> CellHinted;
     }
 }

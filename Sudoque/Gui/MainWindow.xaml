@@ -45,6 +45,7 @@
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
             <Button Command="{Binding NewGameRequest}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToVisibility}}">Create New Game</Button>
             <Button Command="{Binding PlayGameRequest}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToInvisibility}}">Play Game</Button>
+            <Button Command="{Binding TriggerAHint}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToInvisibility}}">Show some hints</Button>
         </StackPanel>
     </Grid>
 </Window>

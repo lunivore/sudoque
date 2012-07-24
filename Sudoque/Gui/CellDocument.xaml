@@ -3,11 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Gui="clr-namespace:Sudoque.Gui"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:im="clr-namespace:Microsoft.Expression.Interactivity.Media;assembly=Microsoft.Expression.Interactions"
              xmlns:ia="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+             xmlns:is="clr-namespace:Expression.Samples.Interactivity"
              Height="72" Width="72" Padding="0">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="booleanToVisibility" />
         <Gui:BooleanToInvisibilityConverter x:Key="booleanToInvisbility" />
+
+        <Storyboard x:Key="HintFade">
+            <ColorAnimation
+                Storyboard.TargetName="HintFillColor" 
+                Storyboard.TargetProperty="(SolidColorBrush.Color)"
+                To="LightCyan" Duration="0:0:.1" />
+            <ColorAnimation
+                Storyboard.TargetName="HintFillColor" 
+                Storyboard.TargetProperty="(SolidColorBrush.Color)"
+                To="Transparent" 
+                BeginTime="0:0:2" Duration="0:0:3" />
+        </Storyboard>
+
     </UserControl.Resources>
     <!-- The button behaviors (aka command grease) ship with the Expression SDK and are redistributable -->
     <!-- System.windows.interactivity -->
@@ -23,6 +38,18 @@
         </i:Interaction.Triggers>
 
         <Grid>
+            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Rectangle.Fill>
+                    <SolidColorBrush x:Name="HintFillColor" Color="Transparent" />
+                </Rectangle.Fill>
+                <i:Interaction.Triggers>
+                    
+                    <is:DataEventTrigger EventName="CellHinted" >
+                        <im:ControlStoryboardAction Storyboard="{StaticResource HintFade}"
+                                                    ControlStoryboardOption="Play" />
+                    </is:DataEventTrigger>
+                </i:Interaction.Triggers>
+            </Rectangle>
             <TextBlock FontSize="18" Foreground="Gray" Padding="0" Margin="2 -2 2 0" HorizontalAlignment="Center" VerticalAlignment="Stretch" Text="{Binding Potentials}" 
                    TextWrapping="Wrap" />
             <Label FontSize="44" Foreground="Gray" Margin="0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Actual}"
