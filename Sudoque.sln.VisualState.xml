@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
+  <TopNode>[0-1000]F:\GitHub\sudoque\Sudoque.sln</TopNode>
+  <SelectedNode>[0-1000]F:\GitHub\sudoque\Sudoque.sln</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]F:\GitHub\sudoque\Sudoque.sln" Expanded="true" />
+    <Node UniqueName="[0-1018]F:\GitHub\sudoque\Sudoque.Behavior\bin\Debug\Sudoque.Behavior.dll" Expanded="true" />
+    <Node UniqueName="[0-1019]Sudoque" Expanded="true" />
+    <Node UniqueName="[0-1020]Sudoque.Behavior" Expanded="true" />
+    <Node UniqueName="[0-1021]Sudoque.Behavior.Game" Expanded="true" />
+    <Node UniqueName="[0-1022]Sudoque.Behavior.Game.Engine" Expanded="true" />
+    <Node UniqueName="[0-1001]Sudoque.Behavior.Game.Engine.CellBehavior" Expanded="true" />
+    <Node UniqueName="[0-1014]Sudoque.Behavior.Game.Engine.CellBehavior.ShouldClearFixedNumbersWhenGameIsRecreated" Expanded="true" />
+    <Node UniqueName="[0-1016]Sudoque.Behavior.Game.Engine.CellBehavior.ShouldClearPotentialsWhenGameIsRecreated" Expanded="true" />
+    <Node UniqueName="[0-1006]Sudoque.Behavior.Game.Engine.CellBehavior.ShouldFixTheNumberIfItHasAnActualWhenGameIsStarted" Expanded="true" />
+    <Node UniqueName="[0-1010]Sudoque.Behavior.Game.Engine.CellBehavior.ShouldHavePotentialsIfMoreThanOneNumberToggled" Expanded="true" />
+    <Node UniqueName="[0-1008]Sudoque.Behavior.Game.Engine.CellBehavior.ShouldNotAllowFixedNumbersToBeToggled" Expanded="true" />
+    <Node UniqueName="[0-1004]Sudoque.Behavior.Game.Engine.CellBehavior.ShouldNotAllowPotentialsForANewGame" Expanded="true" />
+    <Node UniqueName="[0-1002]Sudoque.Behavior.Game.Engine.CellBehavior.ShouldNotHaveAnythingInToStartWith" Expanded="true" />
+    <Node UniqueName="[0-1012]Sudoque.Behavior.Game.Engine.CellBehavior.ShouldRemoveNumbersWhenToggledTwice" Expanded="true" />
+    <Node UniqueName="[0-1034]F:\GitHub\sudoque\Sudoque.Scenarios\bin\Debug\Sudoque.Scenarios.dll" Expanded="true" />
+    <Node UniqueName="[0-1035]Sudoque" Expanded="true" />
+    <Node UniqueName="[0-1036]Sudoque.Scenarios" Expanded="true" />
+    <Node UniqueName="[0-1028]Sudoque.Scenarios.PlayerCanEnterElementsIntoTheGrid" Expanded="true" />
+    <Node UniqueName="[0-1024]Sudoque.Scenarios.PlayerCanSetUpAPuzzle" Expanded="true" />
+    <Node UniqueName="[0-1031]Sudoque.Scenarios.PlayerCanTogglePotentialsAndActuals" Expanded="true" />
+  </Nodes>
+</VisualState>

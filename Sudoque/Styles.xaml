@@ -36,9 +36,6 @@
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" Value="{StaticResource PressedBrush}" />
             </Trigger>
-            <DataTrigger Binding="{Binding Selected}" Value="true">
-                <Setter Property="Background" Value="{StaticResource SelectedBrush}"/>
-            </DataTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>
