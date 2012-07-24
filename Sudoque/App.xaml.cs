@@ -1,7 +1,5 @@
 ﻿using System.Windows;
-using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Unity;
-using Sudoque.Game;
 using Sudoque.Gui;
 
 namespace Sudoque

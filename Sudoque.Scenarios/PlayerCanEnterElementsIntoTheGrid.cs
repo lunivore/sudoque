@@ -4,11 +4,10 @@ using Sudoque.Scenarios.Framework;
 namespace Sudoque.Scenarios
 {
     [TestFixture]
-    public class UserCanEnterElementsIntoTheGrid : Scenario
+    public class PlayerCanEnterElementsIntoTheGrid : Scenario
     {
-
         [Test]
-        public void AUserCanSetUpAPuzzle()
+        public void APlayerCanSetUpAPuzzle()
         {
             GivenSudoque.IsRunning();
             WhenISelectACell.At(3, 4).AndToggle(1);
@@ -40,7 +39,7 @@ namespace Sudoque.Scenarios
         }
 
         [Test]
-        public void AUserIsPreventedFromChangingThePuzzleWhilePlayingIt()
+        public void APlayerCanPlayAPuzzleWithoutChangingThePuzzleNumbers()
         {
             GivenSudoque.HasAPuzzle(
                 "... ... ..." + NL +

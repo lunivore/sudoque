@@ -1,4 +1,5 @@
 using System;
+using NUnit.Framework;
 
 namespace Sudoque.Scenarios.Framework
 {
@@ -17,7 +18,26 @@ namespace Sudoque.Scenarios.Framework
 
         public void AndToggle(params int[] selection)
         {
-            Array.ForEach(selection, s => _world.PuzzleView.ToggleCell(_ninerId, _cellId, s));
+            var cell = _world.CellFinder.FromNinerAndCellId(_ninerId, _cellId);
+            cell.GotFocus.Execute("whatever");
+            var commands = _world.Commands;
+            Array.ForEach(selection, commands.PressNumber);
         }
+
+        public ScenarioCell ShouldHavePotentials(params int[] expectedPotentials)
+        {
+            var cell = _world.CellFinder.FromNinerAndCellId(_ninerId, _cellId);
+            var expected = string.Join(" ", expectedPotentials);
+            Assert.AreEqual(expected, cell.Potentials);
+            return this;
+        }
+
+        public void AndActual(string expected)
+        {
+            var cell = _world.CellFinder.FromNinerAndCellId(_ninerId, _cellId);
+            Assert.AreEqual(expected, cell.Actual);
+        }
+
+        public void AndActual(int expected) { AndActual(expected.ToString()); }
     }
 }

@@ -1,9 +1,8 @@
-using System;
 using System.Linq;
+using System.Windows.Input;
+using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
 using Sudoque.Game.Engine;
-using Microsoft.Practices.Prism.Commands;
-using System.Windows.Input;
 
 namespace Sudoque.Game
 {

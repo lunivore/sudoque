@@ -24,6 +24,6 @@ namespace Sudoque.Gui
             return true;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged = delegate{};
     }
 }

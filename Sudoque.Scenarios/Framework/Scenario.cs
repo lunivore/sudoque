@@ -1,3 +1,4 @@
+using System;
 using Sudoque.Scenarios.Steps;
 
 namespace Sudoque.Scenarios.Framework
@@ -5,20 +6,26 @@ namespace Sudoque.Scenarios.Framework
     public class Scenario
     {
         private readonly SudoqueSteps _sudoqueSteps;
-        private readonly CellSelectionSteps _cellSelectionSteps;
+        private readonly CellSteps _cellSteps;
         private World _world;
+        protected static readonly string NL = Environment.NewLine;
+        protected readonly string None = string.Empty;
 
         protected Scenario()
         {
             _world = new World();
             _sudoqueSteps = new SudoqueSteps(_world);
-            _cellSelectionSteps = new CellSelectionSteps(_world);
+            _cellSteps = new CellSteps(_world);
+        }
+        
+        protected CellSteps WhenISelectACell
+        {
+            get { return _cellSteps; }
         }
 
-
-        protected CellSelectionSteps WhenISelect
+        protected CellSteps ThenTheCell
         {
-            get { return _cellSelectionSteps; }
+            get { return _cellSteps; }
         }
 
         protected SudoqueSteps GivenSudoque
@@ -32,6 +39,11 @@ namespace Sudoque.Scenarios.Framework
         }
 
         protected SudoqueSteps ThenSudoque
+        {
+            get { return _sudoqueSteps; }
+        }
+
+        protected SudoqueSteps AndSudoque
         {
             get { return _sudoqueSteps; }
         }

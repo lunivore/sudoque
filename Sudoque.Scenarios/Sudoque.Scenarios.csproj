@@ -53,14 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\CellFinder.cs" />
+    <Compile Include="Framework\Commands.cs" />
     <Compile Include="Framework\StringBasedPuzzleView.cs" />
     <Compile Include="Framework\World.cs" />
-    <Compile Include="Steps\CellSelectionSteps.cs" />
+    <Compile Include="PlayerCanTogglePotentialsAndActuals.cs" />
+    <Compile Include="Steps\CellSteps.cs" />
     <Compile Include="Framework\ScenarioCell.cs" />
     <Compile Include="Framework\Scenario.cs" />
     <Compile Include="Steps\SudoqueSteps.cs" />
-    <Compile Include="UserCanEnterElementsIntoTheGrid.cs" />
+    <Compile Include="PlayerCanEnterElementsIntoTheGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserCanEnterElementsIntoTheGrid.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sudoque\Sudoque.csproj">

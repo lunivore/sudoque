@@ -16,6 +16,8 @@ namespace Sudoque.Scenarios.Steps
         {
             var container = new AppFactory().CreateContainer();
             _world.PuzzleView = container.Resolve<StringBasedPuzzleView>();
+            _world.CellFinder = container.Resolve<CellFinder>();
+            _world.Commands = container.Resolve<Commands>();
         }
 
         public void ShouldLookLike(string grid)
@@ -32,6 +34,12 @@ namespace Sudoque.Scenarios.Steps
         public void IsPlayed()
         {
             _world.PuzzleView.StartGame();
+        }
+
+        public void IsPlayedWithAPuzzle(string puzzle)
+        {
+            HasAPuzzle(puzzle);
+            IsPlayed();
         }
     }
 }

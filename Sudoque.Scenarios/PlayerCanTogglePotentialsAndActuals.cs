@@ -4,45 +4,50 @@ using Sudoque.Scenarios.Framework;
 namespace Sudoque.Scenarios
 {
     [TestFixture]
-    public class UserCanEnterElementsIntoTheGrid : Scenario
+    public class PlayerCanTogglePotentialsAndActuals : Scenario
     {
-
         [Test]
-        public void AUserCanSetUpAPuzzle()
+        public void PlayerCanAddAndRemovePotentials()
         {
-            GivenSudoque.IsRunning();
-            WhenISelectACell.At(3, 4).AndToggle(1);
-            ThenSudoque.ShouldLookLike(
-                "... ... ..." + NL +
-                "... ... ..." + NL +
-                "... ... ..." + NL +
-                "           " + NL +
-                "... ... ..." + NL +
-                ".1. ... ..." + NL +
-                "... ... ..." + NL +
-                "           " + NL +
-                "... ... ..." + NL +
-                "... ... ..." + NL +
-                "... ... ..." + NL);
-            WhenISelectACell.At(0, 8).AndToggle(1, 2, 3);
-            ThenSudoque.ShouldLookLike(
+            GivenSudoque.IsPlayedWithAPuzzle(
                 "... ... ..." + NL +
                 "... ... ..." + NL +
                 "..3 ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +
-                ".1. ... ..." + NL +
+                "... ... ..." + NL +
                 "... ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +
                 "... ... ..." + NL +
                 "... ... ..." + NL);
+            WhenISelectACell.At(1, 4).AndToggle(1, 2, 3, 4);
+            ThenTheCell.At(1, 4).ShouldHavePotentials(1, 2, 3, 4)
+                                .AndActual(None);
+
+            WhenISelectACell.At(1, 4).AndToggle(1, 3);
+            ThenTheCell.At(1, 4).ShouldHavePotentials(2, 4)
+                                .AndActual(None);
+
+            AndSudoque.ShouldLookLike(
+                "... ... ..." + NL +
+                "... .#. ..." + NL +
+                "..3 ... ..." + NL +
+                "           " + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "           " + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL);
+
         }
 
         [Test]
-        public void AUserIsPreventedFromChangingThePuzzleWhilePlayingIt()
+        public void OnePotentialBecomesAnActual()
         {
-            GivenSudoque.HasAPuzzle(
+            GivenSudoque.IsPlayedWithAPuzzle(
                 "... ... ..." + NL +
                 "... ... ..." + NL +
                 "..3 ... ..." + NL +
@@ -54,16 +59,18 @@ namespace Sudoque.Scenarios
                 "... ... ..." + NL +
                 "... ... ..." + NL +
                 "... ... ..." + NL);
-            WhenSudoque.IsPlayed();
-            WhenISelectACell.At(0, 8).AndToggle(5);
-            WhenISelectACell.At(4, 4).AndToggle(6);
-            ThenSudoque.ShouldLookLike(
+
+            WhenISelectACell.At(1, 5).AndToggle(4);
+            ThenTheCell.At(1, 5).ShouldHavePotentials()
+                                .AndActual(4);
+
+            AndSudoque.ShouldLookLike(
                 "... ... ..." + NL +
-                "... ... ..." + NL +
+                "... ..4 ..." + NL +
                 "..3 ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +
-                "... .6. ..." + NL +
+                "... ... ..." + NL +
                 "... ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +

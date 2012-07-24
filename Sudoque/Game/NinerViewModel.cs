@@ -1,22 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 
 namespace Sudoque.Game
 {
-    public class NinerViewModel : INotifyPropertyChanged
+    public class NinerViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private readonly NinerId _id;
-        private IEnumerable<CellViewModel> _cells;
+        private readonly IEnumerable<CellViewModel> _cells;
 
         public NinerViewModel(NinerId id, ICreateCellViewModels cellViewModelFactory)
         {
             _id = id;
 
-            List<CellViewModel> cellModels = new List<CellViewModel>();
+            var cellModels = new List<CellViewModel>();
 
             var range = new[] { 0, 1, 2 };
             foreach (var row in range)

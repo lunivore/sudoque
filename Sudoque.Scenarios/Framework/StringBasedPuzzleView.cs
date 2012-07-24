@@ -8,11 +8,14 @@ namespace Sudoque.Scenarios.Framework
 {
     public class StringBasedPuzzleView
     {
-        private readonly PuzzleViewModel _viewModel;
+        private static readonly int[] Separators = new[] {2, 5};
+        private readonly CellFinder _cellFinder;
+        private readonly Commands _commands;
 
-        public StringBasedPuzzleView(PuzzleViewModel viewModel)
+        public StringBasedPuzzleView(CellFinder cellFinder, Commands commands)
         {
-            _viewModel = viewModel;
+            _cellFinder = cellFinder;
+            _commands = commands;
         }
 
         public void ShouldMatch(string expected)
@@ -23,10 +26,9 @@ namespace Sudoque.Scenarios.Framework
             {
                 for (int col = 0; col < 9; col++)                
                 {
-                    var niner = FindNiner( row, col );
-                    var cell = FindCellInNiner(row % 3, col % 3, niner);
+                    var cell = _cellFinder.FromColumnAndRow(col, row);
 
-                    currentGrid.Append(cell.Actual.Equals(string.Empty) ? "." : cell.Actual);
+                    currentGrid.Append(CharacterForCell(cell));
                     AppendVerticalSeparators(currentGrid, col);
                 }
                 AppendHorizontalSeparators(currentGrid, row);
@@ -35,16 +37,6 @@ namespace Sudoque.Scenarios.Framework
             Assert.AreEqual(expected, actual);
         }
 
-        private NinerViewModel FindNiner( int row, int col)
-        {
-            return _viewModel.Niners.ElementAt( row / 3 * 3 + col / 3); // Truncate to block of rows, then apply offset per column
-        }
-
-        private CellViewModel FindCellInNiner(int row, int col, NinerViewModel niner)
-        {
-            return niner.Cells.ElementAt( row * 3 + col );
-        }
-        
         public void Initialize(string grid)
         {
             var gridWithoutSeparators = grid
@@ -53,49 +45,53 @@ namespace Sudoque.Scenarios.Framework
             
             for (int row = 0; row < 9; row++)
             {
-                for (int col = 0; col < 9; col++)
+                for (int column = 0; column < 9; column++)
                 {
-                    var character = gridWithoutSeparators.ElementAt(row*9 + col);
+                    var character = gridWithoutSeparators.ElementAt(row*9 + column);
                     if (character != '.')
                     {
-                        var niner = FindNiner(row, col);
-                        var cell = FindCellInNiner( row % 3, col % 3, niner );
+                        var cell = _cellFinder.FromColumnAndRow(column, row);
                         cell.Selected = true;
-                        _viewModel.NumberRequest.Execute(character.ToString());
+                        _commands.PressNumber(int.Parse(character.ToString()));
                     }
                 }
             }
         }
 
+        public void StartGame()
+        {
+            _commands.PlayGame();
+        }
+
         private void AppendHorizontalSeparators(StringBuilder currentGrid, int row)
         {
             currentGrid.Append(Environment.NewLine);
-            if (row == 2 || row == 5)
+            if (Separators.Contains(row))
             {
                 currentGrid.Append("           ");
                 currentGrid.Append(Environment.NewLine);
             }
         }
 
-        private static void AppendVerticalSeparators(StringBuilder currentGrid, int col)
+        private static void AppendVerticalSeparators(StringBuilder currentGrid, int column)
         {
-            if (col == 2 || col == 5)
+            if (Separators.Contains(column))
             {
                 currentGrid.Append(" ");
             }            
         }
 
-        public void ToggleCell(int ninerId, int cellId, int number)
+        private static string CharacterForCell(CellViewModel cell)
         {
-            var niner = _viewModel.Niners.ElementAt(ninerId);
-            var cell = niner.Cells.ElementAt(cellId);
-            cell.GotFocus.Execute("whatever");
-            _viewModel.NumberRequest.Execute(number.ToString());
-        }
-
-        public void StartGame()
-        {
-            _viewModel.PlayGameRequest.Execute(null);
+            if (!cell.Actual.Equals(string.Empty))
+            {
+                return cell.Actual;
+            }
+            if (!cell.Potentials.Equals(string.Empty))
+            {
+                return "#";
+            }
+            return ".";
         }
     }
 }
