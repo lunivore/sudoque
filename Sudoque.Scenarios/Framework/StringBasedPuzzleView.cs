@@ -37,7 +37,7 @@ namespace Sudoque.Scenarios.Framework
             Assert.AreEqual(expected, actual);
         }
 
-        public void Initialize(string grid)
+        public void SetUpWith(string grid)
         {
             var gridWithoutSeparators = grid
                 .Replace(" ", string.Empty)
@@ -56,11 +56,6 @@ namespace Sudoque.Scenarios.Framework
                     }
                 }
             }
-        }
-
-        public void StartGame()
-        {
-            _commands.PlayGame();
         }
 
         private void AppendHorizontalSeparators(StringBuilder currentGrid, int row)

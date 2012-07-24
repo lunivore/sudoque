@@ -20,5 +20,10 @@ namespace Sudoque.Scenarios.Framework
         {
             _viewModel.PlayGameRequest.Execute(null);
         }
+
+        public void CreateNewGame()
+        {
+            _viewModel.NewGameRequest.Execute(null);
+        }
     }
 }

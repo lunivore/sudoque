@@ -1,4 +1,4 @@
-using Microsoft.Practices.Unity;
+using System;
 using Sudoque.Scenarios.Framework;
 
 namespace Sudoque.Scenarios.Steps
@@ -6,6 +6,7 @@ namespace Sudoque.Scenarios.Steps
     public class SudoqueSteps
     {
         private readonly World _world;
+        private static readonly string NL = Environment.NewLine;
 
         public SudoqueSteps(World world)
         {
@@ -14,10 +15,7 @@ namespace Sudoque.Scenarios.Steps
 
         public void IsRunning()
         {
-            var container = new AppFactory().CreateContainer();
-            _world.PuzzleView = container.Resolve<StringBasedPuzzleView>();
-            _world.CellFinder = container.Resolve<CellFinder>();
-            _world.Commands = container.Resolve<Commands>();
+            _world.Initialize();
         }
 
         public void ShouldLookLike(string grid)
@@ -28,18 +26,40 @@ namespace Sudoque.Scenarios.Steps
         public void HasAPuzzle(string grid)
         {
             IsRunning();
-            _world.PuzzleView.Initialize(grid);
+            _world.PuzzleView.SetUpWith(grid);
         }
 
         public void IsPlayed()
         {
-            _world.PuzzleView.StartGame();
+            _world.Commands.PlayGame();
         }
 
         public void IsPlayedWithAPuzzle(string puzzle)
         {
             HasAPuzzle(puzzle);
             IsPlayed();
+        }
+
+        public void IsToldToCreateANewGame()
+        {
+            _world.Commands.CreateNewGame();
+        }
+
+        public void ShouldBeEmpty()
+        {
+            _world.PuzzleView.ShouldMatch(
+                
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "           " + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "           " + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL);
         }
     }
 }

@@ -4,11 +4,11 @@ using Sudoque.Scenarios.Framework;
 namespace Sudoque.Scenarios
 {
     [TestFixture]
-    public class UserCanEnterElementsIntoTheGrid : Scenario
+    public class PlayerCanSetUpAPuzzle : Scenario
     {
 
         [Test]
-        public void AUserCanSetUpAPuzzle()
+        public void APlayerCanSetUpAPuzzle()
         {
             GivenSudoque.IsRunning();
             WhenISelectACell.At(3, 4).AndToggle(1);
@@ -40,7 +40,7 @@ namespace Sudoque.Scenarios
         }
 
         [Test]
-        public void AUserIsPreventedFromChangingThePuzzleWhilePlayingIt()
+        public void APlayerIsPreventedFromChangingThePuzzleWhilePlayingIt()
         {
             GivenSudoque.HasAPuzzle(
                 "... ... ..." + NL +
@@ -64,6 +64,37 @@ namespace Sudoque.Scenarios
                 "           " + NL +
                 "... ... ..." + NL +
                 "... .6. ..." + NL +
+                "... ... ..." + NL +
+                "           " + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL);
+        }
+
+        [Test]
+        public void APlayerCanClearTheGridAndStartAgain()
+        {
+            GivenSudoque.IsPlayedWithAPuzzle(
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "..3 ... ..." + NL +
+                "           " + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "           " + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL);
+            WhenSudoque.IsToldToCreateANewGame();
+            ThenSudoque.ShouldBeEmpty();
+            WhenISelectACell.At(4, 4).AndToggle(1, 2, 3);
+            ThenSudoque.ShouldLookLike("... ... ..." + NL +
+                "... ... ..." + NL +
+                "... ... ..." + NL +
+                "           " + NL +
+                "... ... ..." + NL +
+                "... .3. ..." + NL +
                 "... ... ..." + NL +
                 "           " + NL +
                 "... ... ..." + NL +

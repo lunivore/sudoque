@@ -64,7 +64,7 @@
     <Compile Include="Steps\SudoqueSteps.cs" />
     <Compile Include="PlayerCanEnterElementsIntoTheGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserCanEnterElementsIntoTheGrid.cs" />
+    <Compile Include="PlayerCanSetUpAPuzzle.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sudoque\Sudoque.csproj">
