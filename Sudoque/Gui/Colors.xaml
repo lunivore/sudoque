@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="HintColor" >#80A13034</Color>
+    <Color x:Key="SelectionColor">#C0A7988B</Color>
+
+    <SolidColorBrush x:Key="LockedCellTextBrush" Color="Black" />
+    <SolidColorBrush x:Key="EditableCellTextBrush" Color="Gray" />
+</ResourceDictionary>

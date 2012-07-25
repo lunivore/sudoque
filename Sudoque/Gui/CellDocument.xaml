@@ -10,29 +10,30 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="booleanToVisibility" />
         <Gui:BooleanToInvisibilityConverter x:Key="booleanToInvisbility" />
+
         <Storyboard x:Key="FadeHintInAndOut">
             <ColorAnimation
                 Storyboard.TargetName="HintFillColor" 
                 Storyboard.TargetProperty="(SolidColorBrush.Color)"
-                To="#80A13034" Duration="0:0:.1" />
+                To="{StaticResource HintColor}" Duration="0:0:.1" />
             <ColorAnimation
                 Storyboard.TargetName="HintFillColor" 
                 Storyboard.TargetProperty="(SolidColorBrush.Color)"
-                To="#00A13034" 
+                To="Transparent" 
                 BeginTime="0:0:2" Duration="0:0:3" />
         </Storyboard>
         <Storyboard x:Key="FadeToSelected">
             <ColorAnimation
                 Storyboard.TargetName="SelectionFillColor" 
                 Storyboard.TargetProperty="(SolidColorBrush.Color)"
-                To="#C0A7988B" 
+                To="{StaticResource SelectionColor}" 
                 Duration="0:0:1" />
         </Storyboard>
         <Storyboard x:Key="FadeToUnselected">
             <ColorAnimation
                 Storyboard.TargetName="SelectionFillColor" 
                 Storyboard.TargetProperty="(SolidColorBrush.Color)"
-                To="#00A7988B" 
+                To="Transparent" 
                 Duration="0:0:1" />
         </Storyboard>
 
@@ -48,7 +49,8 @@
         </i:Interaction.Triggers>
 
         <Grid>
-            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Rectangle x:Name="HintPane"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Rectangle.Fill>
                     <SolidColorBrush x:Name="HintFillColor" Color="Transparent" />
                 </Rectangle.Fill>
@@ -59,7 +61,8 @@
                     </is:DataEventTrigger>
                 </i:Interaction.Triggers>
             </Rectangle>
-            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Rectangle x:Name="SelectedPane"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Rectangle.Fill>
                     <SolidColorBrush x:Name="SelectionFillColor" Color="Transparent" />
                 </Rectangle.Fill>
@@ -76,11 +79,11 @@
 
                 </i:Interaction.Triggers>
             </Rectangle>
-            <TextBlock FontSize="18" Foreground="Gray" Padding="0" Margin="2 -2 2 0" HorizontalAlignment="Center" VerticalAlignment="Stretch" Text="{Binding Potentials}" 
+            <TextBlock FontSize="18" Foreground="{StaticResource EditableCellTextBrush}" Padding="0" Margin="2 -2 2 0" HorizontalAlignment="Center" VerticalAlignment="Stretch" Text="{Binding Potentials}" 
                    TextWrapping="Wrap" />
-            <Label FontSize="44" Foreground="Gray" Margin="0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Actual}"
+            <Label FontSize="44" Foreground="{StaticResource EditableCellTextBrush}" Margin="0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Actual}"
                    Visibility="{Binding Path=Fixed, Converter={StaticResource booleanToInvisbility}}"/>
-            <Label FontSize="44" Foreground="Black" Margin="0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Actual}"
+            <Label FontSize="44" Foreground="{StaticResource LockedCellTextBrush}" Margin="0" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Actual}"
                    Visibility="{Binding Path=Fixed, Converter={StaticResource booleanToVisibility}}" />
         </Grid>
     </Button>

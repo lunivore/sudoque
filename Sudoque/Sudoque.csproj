@@ -97,6 +97,10 @@
     <Compile Include="Gui\NumberRequestCommand.cs" />
     <Compile Include="Game\NumberRequestEvent.cs" />
     <Compile Include="Game\PuzzleViewModel.cs" />
+    <Page Include="Gui\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,7 +123,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles.xaml">
+    <Page Include="Gui\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
