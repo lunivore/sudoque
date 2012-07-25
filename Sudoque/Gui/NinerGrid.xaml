@@ -8,7 +8,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Border BorderThickness="3" BorderBrush="DarkGray">
+    <Border BorderThickness="1" BorderBrush="DarkGray">
         <ItemsControl 
             ItemTemplate="{StaticResource ResourceKey=cellTemplate}"
             ItemsSource="{Binding Cells}">

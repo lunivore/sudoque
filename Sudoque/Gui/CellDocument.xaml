@@ -37,11 +37,8 @@
         </Storyboard>
 
     </UserControl.Resources>
-    <!-- The button behaviors (aka command grease) ship with the Expression SDK and are redistributable -->
-    <!-- System.windows.interactivity -->
-    <!-- http://www.microsoft.com/en-us/download/details.aspx?id=10801 -->
-    <Button BorderBrush="LightGray"  BorderThickness="1"
-            Style="{StaticResource FlatButtonStyle}"
+
+    <Button Style="{StaticResource FlatButtonStyle}"
             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
             >
         <i:Interaction.Triggers>
