@@ -12,7 +12,7 @@ namespace Sudoque.Behavior.Game.Engine
         public void ShouldNotHaveAnythingInToStartWith()
         {
             // Given a cell's been created
-            var cell = new Cell();
+            var cell = new Cell(new CellId(-1, -1));
 
             // Then it should have nothing in it
             Assert.Null(cell.Actual);
@@ -23,7 +23,7 @@ namespace Sudoque.Behavior.Game.Engine
         public void ShouldNotAllowPotentialsForANewGame()
         {
             // Given a cell has just been created
-            var cell = new Cell();
+            var cell = new Cell(new CellId(-1, -1));
 
             // When we toggle a number then another one
             cell.RequestToggleNumber(1);
@@ -40,7 +40,7 @@ namespace Sudoque.Behavior.Game.Engine
         public void ShouldFixTheNumberIfItHasAnActualWhenGameIsStarted()
         {
             // Given a cell is created and an actual is added
-            var cell = new Cell();
+            var cell = new Cell(new CellId(-1, -1));
             cell.RequestToggleNumber(3);
 
             // When the mode is changed to playing the game
@@ -55,7 +55,7 @@ namespace Sudoque.Behavior.Game.Engine
         public void ShouldNotAllowFixedNumbersToBeToggled()
         {
             // Given a fixed number
-            var cell = new Cell();
+            var cell = new Cell(new CellId(-1, -1));
             cell.RequestToggleNumber(3);
             cell.ChangeMode(Mode.PlayGame);
 
@@ -71,7 +71,7 @@ namespace Sudoque.Behavior.Game.Engine
         public void ShouldHavePotentialsIfMoreThanOneNumberToggled()
         {
             // Given a cell is created and the game is started
-            var cell = new Cell();
+            var cell = new Cell(new CellId(-1, -1));
             cell.ChangeMode(Mode.PlayGame);
 
             // When one number is toggled
@@ -95,7 +95,7 @@ namespace Sudoque.Behavior.Game.Engine
         public void ShouldRemoveNumbersWhenToggledTwice()
         {
             // Given a cell with a few numbers in
-            var cell = new Cell();
+            var cell = new Cell(new CellId(-1, -1));
             cell.ChangeMode(Mode.PlayGame);
             cell.RequestToggleNumber(3);
             cell.RequestToggleNumber(4);
@@ -112,7 +112,7 @@ namespace Sudoque.Behavior.Game.Engine
         public void ShouldClearFixedNumbersWhenGameIsRecreated()
         {
             // Given a cell with a fixed number in
-            var cell = new Cell();
+            var cell = new Cell(new CellId(-1, -1));
             cell.RequestToggleNumber(8);
             cell.ChangeMode(Mode.PlayGame);
 
@@ -133,7 +133,7 @@ namespace Sudoque.Behavior.Game.Engine
         public void ShouldClearPotentialsWhenGameIsRecreated()
         {
             // Given a cell with some numbers in
-            var cell = new Cell();
+            var cell = new Cell(new CellId(-1, -1));
             cell.ChangeMode(Mode.PlayGame);
             cell.RequestToggleNumber(6);
             cell.RequestToggleNumber(7);

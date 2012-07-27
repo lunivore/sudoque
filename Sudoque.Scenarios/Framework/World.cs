@@ -6,19 +6,19 @@ namespace Sudoque.Scenarios.Framework
     {
         private StringBasedPuzzleView _puzzleView;
         private CellFinder _cellFinder;
-        private Commands _commands;
-
+        private Operations _operations;
+        
         public void Initialize()
         {
             var container = new AppFactory().CreateContainer();
             _puzzleView = container.Resolve<StringBasedPuzzleView>();
             _cellFinder = container.Resolve<CellFinder>();
-            _commands = container.Resolve<Commands>();
+            _operations = container.Resolve<Operations>();
         }
 
-        public Commands Commands
+        public Operations Operations
         {
-            get { return _commands; }
+            get { return _operations; }
         }
 
         public CellFinder CellFinder

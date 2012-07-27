@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Moq">
       <HintPath>..\lib\build\Moq.dll</HintPath>
     </Reference>
@@ -48,12 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Engine\CellBehavior.cs" />
+    <Compile Include="Game\Engine\CellRepositoryBehavior.cs" />
+    <Compile Include="Game\Engine\Rules\ActualsCollideBehavior.cs" />
+    <Compile Include="Game\Engine\Rules\OnlyOneSpaceBehavior.cs" />
+    <Compile Include="Game\Engine\Rules\RuleBehavior.cs" />
+    <Compile Include="Game\Engine\SolverBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sudoque\Sudoque.csproj">
       <Project>{B3B01179-D736-407A-BA6E-2E16514AD196}</Project>
       <Name>Sudoque</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

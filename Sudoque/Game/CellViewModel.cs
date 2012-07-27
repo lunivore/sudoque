@@ -1,35 +1,33 @@
+using System;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
 using Sudoque.Game.Engine;
-using System;
 
 namespace Sudoque.Game
 {
     public class CellViewModel : ViewModel
     {
-        private readonly CellId _id;
         private readonly CellSelectedEvent _selectionEvent;
         private readonly Cell _cell;
         private bool _selected;
 
-        public CellViewModel(CellId id, IEventAggregator events)
+        public CellViewModel(Cell cell, IEventAggregator events)
         {
-            _id = id;
-            _cell = new Cell();
+            _cell = cell;
 
             GotFocus = new DelegateCommand<string>( CellFocused);
 
             _selectionEvent = events.GetEvent<CellSelectedEvent>();
-            _selectionEvent.Subscribe( cell =>
+            _selectionEvent.Subscribe( c =>
                                   {
-                                      Selected = cell == _cell;
+                                      Selected = _cell == c;
                                   }); // Note: Could be memory leak due to event link
 
-            events.GetEvent<HintProvidedEvent>().Subscribe( cells =>
+            events.GetEvent<HintProvidedEvent>().Subscribe( hint =>
                 {
-                    if( cells.Contains( _cell ) )
+                    if( hint.Cells.Contains( _cell ) )
                     {
                         if (CellHinted != null) CellHinted(this, EventArgs.Empty);
                     }
@@ -79,7 +77,7 @@ namespace Sudoque.Game
 
         public bool Selected { 
              get { return _selected; }
-             set
+             private set
              {
                  if (_selected != value)
                  {
@@ -98,7 +96,7 @@ namespace Sudoque.Game
         
         public override string ToString()
         {
-            return _id.ToString();
+            return _cell.ToString();
         }
 
         public Cell Cell { get { return _cell; } }

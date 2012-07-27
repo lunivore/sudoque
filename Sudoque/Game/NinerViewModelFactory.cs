@@ -9,9 +9,9 @@ namespace Sudoque.Game
             _cellViewModelFactory = cellViewModelFactory;
         }
 
-        public NinerViewModel Create(int column, int row)
+        public NinerViewModel Create(int ninerId)
         {
-            return new NinerViewModel(new NinerId(column, row), _cellViewModelFactory);
+            return new NinerViewModel(ninerId, _cellViewModelFactory);
         }
     }
 }

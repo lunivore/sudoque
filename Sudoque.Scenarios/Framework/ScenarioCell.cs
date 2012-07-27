@@ -20,7 +20,7 @@ namespace Sudoque.Scenarios.Framework
         {
             var cell = _world.CellFinder.FromNinerAndCellId(_ninerId, _cellId);
             cell.GotFocus.Execute("whatever");
-            var commands = _world.Commands;
+            var commands = _world.Operations;
             Array.ForEach(selection, commands.PressNumber);
         }
 

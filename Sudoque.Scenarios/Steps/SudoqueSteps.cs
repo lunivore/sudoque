@@ -31,7 +31,7 @@ namespace Sudoque.Scenarios.Steps
 
         public void IsPlayed()
         {
-            _world.Commands.PlayGame();
+            _world.Operations.PlayGame();
         }
 
         public void IsPlayedWithAPuzzle(string puzzle)
@@ -42,7 +42,7 @@ namespace Sudoque.Scenarios.Steps
 
         public void IsToldToCreateANewGame()
         {
-            _world.Commands.CreateNewGame();
+            _world.Operations.CreateNewGame();
         }
 
         public void ShouldBeEmpty()

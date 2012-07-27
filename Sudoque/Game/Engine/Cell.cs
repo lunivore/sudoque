@@ -5,12 +5,14 @@ namespace Sudoque.Game.Engine
 {
     public class Cell
     {
+        private readonly CellId _id;
         private readonly HashSet<int> _potentials;
         private Mode _mode = Mode.NewGame;
         private bool _fixed;
 
-        public Cell()
+        public Cell(CellId id)
         {
+            _id = id;
             _potentials = new HashSet<int>();
         }
 
@@ -70,6 +72,11 @@ namespace Sudoque.Game.Engine
             {
                 _potentials.Add(number);
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Cell[{0}]", _id);
         }
     }
 }

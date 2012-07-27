@@ -1,23 +1,22 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Sudoque.Game
 {
     public class NinerViewModel
     {
-        private readonly NinerId _id;
         private readonly IEnumerable<CellViewModel> _cells;
+        private int _id;
 
-        public NinerViewModel(NinerId id, ICreateCellViewModels cellViewModelFactory)
+        public NinerViewModel(int id, ICreateCellViewModels cellViewModelFactory)
         {
             _id = id;
 
             var cellModels = new List<CellViewModel>();
 
-            var range = new[] { 0, 1, 2 };
-            foreach (var row in range)
-            foreach (var col in range)
+            foreach (var cellId in Enumerable.Range(0, 9))
             {
-                cellModels.Add(cellViewModelFactory.Create(id, col, row));
+                cellModels.Add(cellViewModelFactory.Create(id, cellId));
             }
             _cells = cellModels;
         }
@@ -29,7 +28,7 @@ namespace Sudoque.Game
 
         public override string ToString()
         {
-            return _id.ToString();
+            return string.Format("NinerViewModel[{0}]", _id);
         }
     }
 }

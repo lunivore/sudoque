@@ -24,13 +24,14 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Border BorderThickness="3" BorderBrush="DarkGray">
+        <Border BorderThickness="3" BorderBrush="DarkGray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <ItemsControl 
                 ItemTemplate="{StaticResource ResourceKey=ninerTemplate}"
                 ItemsSource="{Binding Niners}">
@@ -45,7 +46,9 @@
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
             <Button Command="{Binding NewGameRequest}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToVisibility}}">Create New Game</Button>
             <Button Command="{Binding PlayGameRequest}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToInvisibility}}">Play Game</Button>
-            <Button Command="{Binding TriggerAHint}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToInvisibility}}">Show some hints</Button>
+            <Button Command="{Binding AskForHelp}" Visibility="{Binding GameCreated, Converter={StaticResource booleanToVisibility}}">Help me!</Button>
         </StackPanel>
+        
+        <TextBlock Grid.Row="1" Grid.Column="1" MinWidth="100" Margin="10" Text="{Binding HintText}" />
     </Grid>
 </Window>

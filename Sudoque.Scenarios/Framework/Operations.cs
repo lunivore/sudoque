@@ -1,12 +1,13 @@
+using NUnit.Framework;
 using Sudoque.Game;
 
 namespace Sudoque.Scenarios.Framework
 {
-    public class Commands
+    public class Operations
     {
         private readonly PuzzleViewModel _viewModel;
 
-        public Commands(PuzzleViewModel viewModel)
+        public Operations(PuzzleViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -24,6 +25,16 @@ namespace Sudoque.Scenarios.Framework
         public void CreateNewGame()
         {
             _viewModel.NewGameRequest.Execute(null);
+        }
+
+        public void AskForHelp()
+        {
+            _viewModel.AskForHelp.Execute(null);
+        }
+
+        public void HelpTextShouldBe(string text)
+        {
+            Assert.AreEqual(text, _viewModel.HintText);
         }
     }
 }

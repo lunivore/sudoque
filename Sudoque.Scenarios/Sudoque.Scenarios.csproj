@@ -54,9 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\CellFinder.cs" />
-    <Compile Include="Framework\Commands.cs" />
+    <Compile Include="Framework\Operations.cs" />
+    <Compile Include="Steps\HelpSteps.cs" />
     <Compile Include="Framework\StringBasedPuzzleView.cs" />
     <Compile Include="Framework\World.cs" />
+    <Compile Include="PlayerCanGetSimpleHints.cs" />
     <Compile Include="PlayerCanTogglePotentialsAndActuals.cs" />
     <Compile Include="Steps\CellSteps.cs" />
     <Compile Include="Framework\ScenarioCell.cs" />
@@ -70,6 +72,7 @@
     <ProjectReference Include="..\Sudoque\Sudoque.csproj">
       <Project>{B3B01179-D736-407A-BA6E-2E16514AD196}</Project>
       <Name>Sudoque</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

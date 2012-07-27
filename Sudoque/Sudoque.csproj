@@ -71,17 +71,26 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppFactory.cs" />
+    <Compile Include="Game\Engine\Addresser.cs" />
+    <Compile Include="Game\Engine\CellId.cs" />
+    <Compile Include="Game\Engine\CellRepository.cs" />
+    <Compile Include="Game\Engine\Hint.cs" />
+    <Compile Include="Game\Engine\NineCells.cs" />
+    <Compile Include="Game\Engine\ILookAfterCells.cs" />
+    <Compile Include="Game\Engine\IMightBeAbleToHelp.cs" />
+    <Compile Include="Game\Engine\Rules\ActualsCollide.cs" />
+    <Compile Include="Game\Engine\Rules\OnlyOneSpace.cs" />
+    <Compile Include="Game\Engine\Solver.cs" />
     <Compile Include="Game\HintProvidedEvent.cs" />
     <Compile Include="Game\Engine\Cell.cs" />
     <Compile Include="Game\CellViewModelFactory.cs" />
-    <Compile Include="Game\CellId.cs" />
     <Compile Include="Game\CellSelectedEvent.cs" />
     <Compile Include="Game\CellViewModel.cs" />
+    <Compile Include="Game\HintRequestEvent.cs" />
     <Compile Include="Game\ICreateCellViewModels.cs" />
     <Compile Include="Game\ICreateNinerViewModels.cs" />
     <Compile Include="Game\Mode.cs" />
     <Compile Include="Game\ModeRequestEvent.cs" />
-    <Compile Include="Game\NinerId.cs" />
     <Compile Include="Game\NinerViewModel.cs" />
     <Compile Include="Game\Support\BindingListener.cs" />
     <Compile Include="Game\Support\DataEventTrigger.cs" />

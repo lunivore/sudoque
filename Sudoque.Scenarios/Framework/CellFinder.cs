@@ -21,8 +21,8 @@ namespace Sudoque.Scenarios.Framework
 
         public CellViewModel FromColumnAndRow(int column, int row)
         {
-            var niner = _viewModel.Niners.ElementAt(row / 3 * 3 + column / 3);
-            var cell = niner.Cells.ElementAt(row % 3 * 3 + column % 3);
+            var niner = _viewModel.Niners.ElementAt((row / 3) * 3 + column / 3);
+            var cell = niner.Cells.ElementAt((row % 3) * 3 + column % 3);
             return cell;
         }
     }

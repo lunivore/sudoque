@@ -1,26 +1,24 @@
-namespace Sudoque.Game
+﻿namespace Sudoque.Game.Engine
 {
     public class CellId
     {
-        private readonly NinerId _ninerId;
-        private readonly int _id;
+        private readonly int _ninerId;
+        private readonly int _withinNinerId;
 
-        public CellId(NinerId ninerId, int column, int row)
+        public CellId(int ninerId, int withinNinerId)
         {
             _ninerId = ninerId;
-            _id = row*3 + column;
+            _withinNinerId = withinNinerId;
         }
 
         public bool Equals(CellId other)
         {
-            if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other._id == _id && Equals(other._ninerId, _ninerId);
+            return other._ninerId == _ninerId && other._withinNinerId == _withinNinerId;
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != typeof (CellId)) return false;
             return Equals((CellId) obj);
@@ -30,13 +28,13 @@ namespace Sudoque.Game
         {
             unchecked
             {
-                return (_id*397) ^ _ninerId.GetHashCode();
+                return (_ninerId*397) ^ _withinNinerId;
             }
         }
 
         public override string ToString()
         {
-            return string.Format("Cell[{0}, {1}]", _ninerId, _id);
+            return string.Format("{0}, {1}", _ninerId, _withinNinerId);
         }
     }
 }

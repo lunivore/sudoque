@@ -1,11 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
 using Sudoque.Gui;
-using Sudoque.Game.Engine;
-using System.Linq;
-using System;
 
 namespace Sudoque.Game
 {
@@ -14,8 +12,9 @@ namespace Sudoque.Game
         private readonly ICommand _numberRequestCommand;
         private readonly ICommand _newGameRequestCommand;
         private readonly ICommand _playGameRequestCommand;
-        private readonly ICommand _triggerAHintCommand;
+        private readonly ICommand _askForHelpCommand;
         private readonly IEnumerable<NinerViewModel> _niners;
+        private string _hintText = string.Empty;
 
         public PuzzleViewModel(ICreateNinerViewModels ninerViewModelFactory, IEventAggregator events)
         {
@@ -34,32 +33,30 @@ namespace Sudoque.Game
                                                                         NotifyPropertyChanged(() => GameCreated);
                                                                     });
 
-            // SPIKE: Need to get some random cells for testing hints - this has no real function
-            _triggerAHintCommand = new DelegateCommand<Nullable<bool>>(b =>
-                {
-                    events.GetEvent<HintProvidedEvent>().Publish(GrabRandomCells());
-                });
+            _askForHelpCommand = new DelegateCommand<object>(b => events.GetEvent<HintRequestEvent>().Publish(null));
+
+            events.GetEvent<HintProvidedEvent>().Subscribe(hint => HintText = hint.Text);
             
 
-            List<NinerViewModel> ninerModels = new List<NinerViewModel>();
+            var ninerModels = new List<NinerViewModel>();
 
-            var range = new[] { 0, 1, 2 };
-            foreach (var row in range)
-                foreach (var col in range)
-                {
-                    ninerModels.Add(ninerViewModelFactory.Create(col, row));
-                }
+            foreach (var id in Enumerable.Range(0, 9))
+            {
+                ninerModels.Add(ninerViewModelFactory.Create(id));
+            }
             _niners = ninerModels;
         }
 
-        // SPIKE: Need to get some random cells for testing hints - this has no real function
-        ICollection<Cell> GrabRandomCells()
+        public string HintText
         {
-            var someCells = new List<Cell>();
-            someCells.Add(Niners.Skip(2).First().Cells.First().Cell);
-            someCells.AddRange(Niners.First().Cells.Select(cvm => cvm.Cell));
-            return someCells;
+            get { return _hintText; }
+            private set
+            {
+                _hintText = value;
+                NotifyPropertyChanged(()=> HintText);
+            }
         }
+
 
         public bool GameCreated { get; private set; }
 
@@ -83,9 +80,9 @@ namespace Sudoque.Game
             get { return _playGameRequestCommand; }
         }
 
-        public ICommand TriggerAHint
+        public ICommand AskForHelp
         {
-            get { return _triggerAHintCommand; }
+            get { return _askForHelpCommand; }
         }
     }
 }

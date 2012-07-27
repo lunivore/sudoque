@@ -10,12 +10,12 @@ namespace Sudoque.Scenarios.Framework
     {
         private static readonly int[] Separators = new[] {2, 5};
         private readonly CellFinder _cellFinder;
-        private readonly Commands _commands;
+        private readonly Operations _operations;
 
-        public StringBasedPuzzleView(CellFinder cellFinder, Commands commands)
+        public StringBasedPuzzleView(CellFinder cellFinder, Operations operations)
         {
             _cellFinder = cellFinder;
-            _commands = commands;
+            _operations = operations;
         }
 
         public void ShouldMatch(string expected)
@@ -51,8 +51,8 @@ namespace Sudoque.Scenarios.Framework
                     if (character != '.')
                     {
                         var cell = _cellFinder.FromColumnAndRow(column, row);
-                        cell.Selected = true;
-                        _commands.PressNumber(int.Parse(character.ToString()));
+                        cell.GotFocus.Execute(null);
+                        _operations.PressNumber(int.Parse(character.ToString()));
                     }
                 }
             }
