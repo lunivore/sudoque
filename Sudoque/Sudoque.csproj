@@ -79,6 +79,7 @@
     <Compile Include="Game\Engine\ILookAfterCells.cs" />
     <Compile Include="Game\Engine\IMightBeAbleToHelp.cs" />
     <Compile Include="Game\Engine\Rules\ActualsCollide.cs" />
+    <Compile Include="Game\Engine\Rules\OnlyOnePotential.cs" />
     <Compile Include="Game\Engine\Rules\OnlyOneSpace.cs" />
     <Compile Include="Game\Engine\Solver.cs" />
     <Compile Include="Game\HintProvidedEvent.cs" />

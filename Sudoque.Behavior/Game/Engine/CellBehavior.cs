@@ -145,5 +145,24 @@ namespace Sudoque.Behavior.Game.Engine
             // Then the cell should be cleared
             Assert.IsEmpty(cell.Potentials);
         }
+
+        public void ShouldBeAbleToCopyItselfWithTheSamePotentialsActualsAndMode()
+        {
+            // Given a cell with some potentials
+            var cell = new Cell(new CellId(-1, -1));
+            cell.ChangeMode(Mode.PlayGame);
+            cell.RemovePotential(6);
+            cell.RemovePotential(7);
+
+            // When we copy the cell
+            var copy = cell.Copy();
+
+            // Then the copy should have the same potentials
+            Assert.AreEqual(new int[]{1, 2, 3, 4, 5, 8, 9}.ToList(), cell.Potentials);
+
+            // And be in the same mode
+            copy.RequestToggleNumber(5);
+            Assert.AreEqual(new int[]{1, 2, 3, 4, 8, 9}.ToList(), cell.Potentials);
+        }
     }
 }

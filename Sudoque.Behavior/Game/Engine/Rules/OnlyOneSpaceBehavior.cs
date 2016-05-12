@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Sudoque.Game.Engine;
 using Sudoque.Game.Engine.Rules;
@@ -29,7 +30,7 @@ namespace Sudoque.Behavior.Game.Engine.Rules
             // containing all 9 cells in the hint.
             Assert.IsTrue(hint.Text.Contains("only one"));
             Assert.IsTrue(hint.Text.Contains("9"));
-            CollectionAssert.AreEquivalent(hint.Cells, allCells);
+            CollectionAssert.AreEquivalent(hint.CellIds, allCells.Select(c => c.Id));
         }
 
         [Test]
@@ -49,6 +50,11 @@ namespace Sudoque.Behavior.Game.Engine.Rules
 
             // Then the rule should tell us that it can't help
             Assert.AreEqual(Hint.None, hint);
+        }
+
+        public override IMightBeAbleToHelp CreateRule()
+        {
+            return new OnlyOneSpace();
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Sudoque.Game.Engine
             _potentials = new HashSet<int>();
         }
 
+        public CellId Id { get { return _id; } }
+
         public void ChangeMode(Mode mode)
         {
             if (mode == Mode.NewGame)
@@ -77,6 +79,23 @@ namespace Sudoque.Game.Engine
         public override string ToString()
         {
             return string.Format("Cell[{0}]", _id);
+        }
+
+        public Cell Copy()
+        {
+            var copy = new Cell(_id);
+            foreach (var potential in _potentials)
+            {
+                copy._potentials.Add(potential);
+            }
+            copy._mode = _mode;
+            copy._fixed = _fixed;
+            return copy;
+        }
+
+        public void RemovePotential(int number)
+        {
+            _potentials.Remove(number);
         }
     }
 }

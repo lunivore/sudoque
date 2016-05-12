@@ -89,7 +89,8 @@ namespace Sudoque.Scenarios
             WhenSudoque.IsToldToCreateANewGame();
             ThenSudoque.ShouldBeEmpty();
             WhenISelectACell.At(4, 4).AndToggle(1, 2, 3);
-            ThenSudoque.ShouldLookLike("... ... ..." + NL +
+            ThenSudoque.ShouldLookLike(
+                "... ... ..." + NL +
                 "... ... ..." + NL +
                 "... ... ..." + NL +
                 "           " + NL +

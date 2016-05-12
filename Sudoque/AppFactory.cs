@@ -18,11 +18,14 @@ namespace Sudoque
             container.RegisterType(typeof(ICreateNinerViewModels), typeof(NinerViewModelFactory));            
             container.RegisterInstance(typeof (PuzzleViewModel), container.Resolve<PuzzleViewModel>());
 
-            container.RegisterInstance(typeof(IEnumerable<IMightBeAbleToHelp>), new IMightBeAbleToHelp[]
-                                                                                   {
-                                                                                       new ActualsCollide(),
-                                                                                       new OnlyOneSpace(),
-                                                                                   });
+            container.RegisterInstance(typeof(IEnumerable<IMightBeAbleToHelp>), 
+                new IMightBeAbleToHelp[]
+                {
+                    new ActualsCollide(),
+                    new OnlyOneSpace(),
+                    new OnlyOnePotential(), 
+                    
+                });
             container.RegisterInstance(typeof (Solver), container.Resolve<Solver>());
             
             return container;

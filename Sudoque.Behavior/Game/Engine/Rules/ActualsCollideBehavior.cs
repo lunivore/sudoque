@@ -23,7 +23,7 @@ namespace Sudoque.Behavior.Game.Engine.Rules
             Assert.IsTrue(hint.Text.Contains("Two of the cells"));
             Assert.IsTrue(hint.Text.Contains("9"));
 
-            CollectionAssert.AreEquivalent(hint.Cells, cells);
+            CollectionAssert.AreEquivalent(hint.CellIds, cells.Select(c => c.Id));
         }
 
         [Test]
@@ -42,6 +42,11 @@ namespace Sudoque.Behavior.Game.Engine.Rules
 
             // Then it should tell us it can't help
             Assert.AreEqual(Hint.None, hint);
+        }
+
+        public override IMightBeAbleToHelp CreateRule()
+        {
+            return new ActualsCollide();
         }
     }
 }

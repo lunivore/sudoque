@@ -24,7 +24,7 @@ namespace Sudoque.Behavior.Game.Engine
             var unhelpfulRule = new Mock<IMightBeAbleToHelp>();
             unhelpfulRule.Setup(r => r.HelpWith(It.IsAny<NineCells>())).Returns(Hint.None);
 
-            var expectedHint = new Hint("I can help!", new List<Cell>());
+            var expectedHint = new Hint("I can help!", new CellId[0]);
             var helpfulRule = new Mock<IMightBeAbleToHelp>();
             helpfulRule.Setup(r => r.HelpWith(It.IsAny<NineCells>())).Returns(expectedHint);
 
@@ -62,7 +62,7 @@ namespace Sudoque.Behavior.Game.Engine
             var unhelpfulRule = new Mock<IMightBeAbleToHelp>();
             unhelpfulRule.Setup(r => r.HelpWith(It.IsAny<NineCells>())).Returns(Hint.None);
 
-            var expectedHint = new Hint("I can help!", new List<Cell>());
+            var expectedHint = new Hint("I can help!", new CellId[0]);
             var helpfulRule = new Mock<IMightBeAbleToHelp>();
             helpfulRule.Setup(r => r.HelpWith(It.IsAny<NineCells>())).Returns(expectedHint);
 

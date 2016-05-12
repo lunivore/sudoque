@@ -83,7 +83,7 @@ namespace Sudoque.Behavior.Game.Engine
             // When we ask for the rows, columns and niners
             var nineCellsCollection = repository.FetchCellsByRowColumnOrNiner();
 
-            // One of them should be the 5th column (index 4)
+            // One of them should be the 1st Niner (index 0)
             var foundNiner0 = false;
             foreach (var nineCells in nineCellsCollection)
             {

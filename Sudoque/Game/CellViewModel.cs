@@ -27,7 +27,7 @@ namespace Sudoque.Game
 
             events.GetEvent<HintProvidedEvent>().Subscribe( hint =>
                 {
-                    if( hint.Cells.Contains( _cell ) )
+                    if( hint.CellIds.Contains( _cell.Id ) )
                     {
                         if (CellHinted != null) CellHinted(this, EventArgs.Empty);
                     }

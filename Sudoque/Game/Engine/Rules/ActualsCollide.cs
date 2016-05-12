@@ -13,8 +13,8 @@ namespace Sudoque.Game.Engine.Rules
                 var count = cellList.Count(c => c.Actual.HasValue && c.Actual.Value == actual);
                 if (count > 1)
                 {
-                    var hintText = string.Format("Two of the cells in this group are {0}", actual);
-                    return new Hint(hintText, cellList);
+                    var hintText = string.Format("Two of the cells in this group are {0}, you nit.", actual);
+                    return new Hint(hintText, cellList.Select(c => c.Id));
                 }
             }
             return Hint.None;
