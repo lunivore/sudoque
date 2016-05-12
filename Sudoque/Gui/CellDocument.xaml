@@ -27,14 +27,14 @@
                 Storyboard.TargetName="SelectionFillColor" 
                 Storyboard.TargetProperty="(SolidColorBrush.Color)"
                 To="{StaticResource SelectionColor}" 
-                Duration="0:0:1" />
+                Duration="0:0:.01" />
         </Storyboard>
         <Storyboard x:Key="FadeToUnselected">
             <ColorAnimation
                 Storyboard.TargetName="SelectionFillColor" 
                 Storyboard.TargetProperty="(SolidColorBrush.Color)"
                 To="Transparent" 
-                Duration="0:0:1" />
+                Duration="0:0:.01" />
         </Storyboard>
 
     </UserControl.Resources>
