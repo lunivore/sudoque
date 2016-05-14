@@ -88,5 +88,10 @@ namespace Sudoque.Scenarios.Framework
             }
             return ".";
         }
+
+        public void AddPotentials(int column, int row, string potentials)
+        {
+            
+        }
     }
 }

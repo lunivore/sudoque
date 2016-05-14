@@ -61,5 +61,10 @@ namespace Sudoque.Scenarios.Steps
                 "... ... ..." + NL +
                 "... ... ..." + NL);
         }
+
+        public void AddPotentials(int column, int row, string potentials)
+        {
+            _world.PuzzleView.AddPotentials(column, row, potentials);
+        }
     }
 }

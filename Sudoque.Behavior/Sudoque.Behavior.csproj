@@ -53,6 +53,8 @@
     <Compile Include="Game\Engine\Rules\ActualsCollideBehavior.cs" />
     <Compile Include="Game\Engine\Rules\OnlyOnePotentialBehaviour.cs" />
     <Compile Include="Game\Engine\Rules\OnlyOneSpaceBehavior.cs" />
+    <Compile Include="Game\Engine\Rules\PotentialsMatchAnActual.cs" />
+    <Compile Include="Game\Engine\Rules\PotentialsMatchAnActualBehaviour.cs" />
     <Compile Include="Game\Engine\Rules\RuleBehavior.cs" />
     <Compile Include="Game\Engine\SolverBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

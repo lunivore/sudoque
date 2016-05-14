@@ -81,6 +81,7 @@
     <Compile Include="Game\Engine\Rules\ActualsCollide.cs" />
     <Compile Include="Game\Engine\Rules\OnlyOnePotential.cs" />
     <Compile Include="Game\Engine\Rules\OnlyOneSpace.cs" />
+    <Compile Include="Game\Engine\Rules\PotentialsMatchAnActual.cs" />
     <Compile Include="Game\Engine\Solver.cs" />
     <Compile Include="Game\HintProvidedEvent.cs" />
     <Compile Include="Game\Engine\Cell.cs" />

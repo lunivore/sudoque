@@ -72,8 +72,9 @@ namespace Sudoque.Scenarios
                 "... 4.. ..." + NL +
                 "... ... ..." + NL +
                 "... ... ..." + NL);
+            WhenISelectACell.At(4, 4).AndToggle(1,2,3,4,5,6,7,8);
             WhenIAskForHelp.Please();
-            ThenTheHintText.ShouldTellMe("This cell can only be a 3.");
+            ThenTheHintText.ShouldTellMe("This cell has more possibilities than are possible.");
         }
     }
 }

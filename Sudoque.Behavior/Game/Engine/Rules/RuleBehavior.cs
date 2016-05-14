@@ -28,7 +28,7 @@ namespace Sudoque.Behavior.Game.Engine.Rules
         {
             return actuals.Select(i =>
                                       {
-                                          var cell = new Cell(new CellId(-1, -1));
+                                          var cell = new Cell(new CellId(i, -1));
                                           cell.ChangeMode(Mode.PlayGame);
                                           cell.RequestToggleNumber(i);
                                           return cell;

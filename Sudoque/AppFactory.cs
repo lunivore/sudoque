@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Unity;
+using Sudoque.Behavior.Game.Engine.Rules;
 using Sudoque.Game;
 using Sudoque.Game.Engine;
 using Sudoque.Game.Engine.Rules;
@@ -23,8 +24,8 @@ namespace Sudoque
                 {
                     new ActualsCollide(),
                     new OnlyOneSpace(),
-                    new OnlyOnePotential(), 
-                    
+                    new OnlyOnePotential(),
+                    new PotentialsMatchAnActual(), 
                 });
             container.RegisterInstance(typeof (Solver), container.Resolve<Solver>());
             
