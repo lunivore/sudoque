@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Practices.Prism.Events;
 
@@ -15,7 +16,7 @@ namespace Sudoque.Game.Engine
             _cells = cells;
             _rules = rules;
             _hintProviderEvent = events.GetEvent<HintProvidedEvent>();
-            events.GetEvent<HintRequestEvent>().Subscribe(o => ProvideHint());
+            events.GetEvent<HintRequestEvent>().Subscribe(o => ProvideHint(), true);
         }
 
         private void ProvideHint()
@@ -34,6 +35,11 @@ namespace Sudoque.Game.Engine
                 }
             }
             _hintProviderEvent.Publish(Hint.None);
+        }
+        
+        ~Solver()
+        {
+            Console.WriteLine("aaah!");
         }
     }
 }
